@@ -2,20 +2,16 @@ import PageHeader from "@/components/PageHeader";
 
 export default function PortfolioPage() {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-[#19172A]">
             <PageHeader
-                title="Portfolio"
-                breadcrumbs={[
-                    { label: "Home", href: "/" },
-                    { label: "Portfolio" }
-                ]}
+                breadcrumb="Portfolio"
+                pillText="• Selected Cases"
+                title="Stories That Move People"
+                highlightWord="Stories"
             />
-            <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white/80">
-                <h2 className="text-3xl font-bold text-white mb-6">Our Finest Creations</h2>
-                <p className="max-w-3xl mx-auto text-lg leading-relaxed">
-                    This is a dummy page for Portfolio. View our gallery of hand-crafted visual identities and animations. Every frame is optimized for engaging communication.
-                </p>
-            </section>
+            <main className="flex-grow flex items-center justify-center py-32">
+                <h2 className="text-4xl md:text-6xl font-black text-white/20 uppercase tracking-[0.5em]">Hallo World</h2>
+            </main>
         </div>
     );
 }

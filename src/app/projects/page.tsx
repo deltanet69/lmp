@@ -2,20 +2,16 @@ import PageHeader from "@/components/PageHeader";
 
 export default function ProjectsPage() {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-[#19172A]">
             <PageHeader
-                title="Our Projects"
-                breadcrumbs={[
-                    { label: "Home", href: "/" },
-                    { label: "Our Projects" }
-                ]}
+                breadcrumb="Our Projects"
+                pillText="• Latest Work"
+                title="Innovating Visual Experiences"
+                highlightWord="Visual"
             />
-            <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white/80">
-                <h2 className="text-3xl font-bold text-white mb-6">Explore Our Work</h2>
-                <p className="max-w-3xl mx-auto text-lg leading-relaxed">
-                    This is a dummy page for Our Projects. Browse through our extensive library of corporate videos, 2D/3D animations, and dynamic website projects built across the past decade.
-                </p>
-            </section>
+            <main className="flex-grow flex items-center justify-center py-32">
+                <h2 className="text-4xl md:text-6xl font-black text-white/20 uppercase tracking-[0.5em]">Hallo World</h2>
+            </main>
         </div>
     );
 }
