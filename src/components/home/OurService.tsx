@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const services = [
     {
         title: "Company Profile",
-        description: "Memvisualkan nilai dan reputasi perusahaan Anda melalui sinematografi berkualitas tinggi.",
+        description: "Memvisualkan nilai dan reputasi perusahaan Anda melalui Visual berkualitas tinggi.",
         icon: "/sr1.png"
     },
     {
