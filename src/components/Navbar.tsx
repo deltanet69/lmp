@@ -45,7 +45,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Desktop Menu Section */}
-                <div className="hidden md:flex relative items-center bg-white/5 backdrop-blur-md border border-white/10 rounded-full py-3.5 px-10 gap-8 shadow-lg shadow-black/20">
+                <div className="hidden md:flex relative items-center bg-white/5 backdrop-blur-md border border-white/10 rounded-full py-2 px-10 gap-8 shadow-lg shadow-black/20">
                     {navLinks.map((link) => (
                         <div key={link.name} className="relative group">
                             {link.isDropdown ? (

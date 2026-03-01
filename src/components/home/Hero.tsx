@@ -29,7 +29,7 @@ export default function Hero() {
                             <span className="text-xs md:text-sm  text-white/90 tracking-widest ">Welcome To</span>
                         </div>
 
-                        <h1 className="text-4xl md:text-[42px] lg:text-[42px] font-black leading-tight tracking-tighter -mb-0.5">
+                        <h1 className="text-4xl md:text-[36px] lg:text-[42px] font-black leading-tight tracking-tighter -mb-0.5">
                             Your Trusted Production Partner
                         </h1>
                         <div className="flex flex-col sm:flex-row sm:items-center text-3xl md:text-[42px] font-black min-h-[50px] md:min-h-[60px]">
