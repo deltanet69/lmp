@@ -9,7 +9,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
-        <div className="flex bg-slate-50 min-h-screen text-slate-800">
+        <div className="flex bg-slate-50 h-screen overflow-hidden text-slate-800">
             {/* Mobile overlay */}
             {mobileOpen && (
                 <div
@@ -33,13 +33,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 />
             </div>
 
-            <div className="flex-1 flex flex-col min-h-screen min-w-0">
+            <div className="flex-1 flex flex-col h-screen min-w-0 overflow-hidden">
                 <TopBar
                     collapsed={collapsed}
                     onToggleCollapse={() => setCollapsed(!collapsed)}
                     onMobileOpen={() => setMobileOpen(true)}
                 />
-                <main className="p-4 md:p-6 flex-grow overflow-auto">
+                <main className="p-4 md:p-6 flex-grow overflow-y-auto overflow-x-hidden">
                     {children}
                 </main>
             </div>

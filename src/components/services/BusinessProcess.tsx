@@ -5,22 +5,34 @@ const processes = [
     {
         icon: "/proses/1.png",
         title: "Research",
-        description: "Bukan sekedar riset. Kami gali kebutuhan, target audience, dan point yang ingin disampaikan."
+        description: "Bukan sekedar riset. Kami gali kebutuhan, target audience, dan point yang ingin disampaikan.",
+        point1: "▪ Target Audience",
+        point2: "▪ Message",
+        point3: "▪ Competitor"
     },
     {
         icon: "/proses/2.png",
         title: "Strategy",
-        description: "Data dan insight kami olah menjadi konsep yang akan memandu proses produksi."
+        description: "Data dan insight kami olah menjadi konsep yang akan memandu proses produksi.",
+        point1: "▪ Brief",
+        point2: "▪ Data Arsip",
+        point3: "▪ Discuss"
     },
     {
         icon: "/proses/3.png",
         title: "Concept",
-        description: "Tim kreatif kami mengembangkan konsep menjadi storyline, naskah, dan storyboard yang detail."
+        description: "Tim kreatif kami mengembangkan konsep menjadi storyline, naskah, dan storyboard yang detail.",
+        point1: "▪ Riset",
+        point2: "▪ Review",
+        point3: "▪ Writing"
     },
     {
         icon: "/proses/4.png",
         title: "Production",
-        description: "Tim produksi kami bekerja sesuai standar untuk menjdikan konsep menjadi karya visual."
+        description: "Tim produksi kami bekerja sesuai standar untuk menjdikan konsep menjadi karya visual.",
+        point1: "▪ Pra Production",
+        point2: "▪ Production",
+        point3: "▪ Post Production"
     }
 ];
 
@@ -65,8 +77,18 @@ export default function BusinessProcess() {
                         </div>
 
                         <h3 className="text-2xl font-bold text-[#E20EC2] mb-4 relative z-10 tracking-wide">{process.title}</h3>
-                        <p className="text-white/70 text-sm leading-relaxed font-medium relative z-10">
+                        <p className="text-white/70 text-md leading-relaxed font-medium relative z-10">
                             {process.description}
+                        </p>
+                        <br />
+                        <p className="text-white/70 text-md leading-relaxed font-medium relative z-10">
+                            {process.point1}
+                        </p>
+                        <p className="text-white/70 text-md leading-relaxed font-medium relative z-10">
+                            {process.point2}
+                        </p>
+                        <p className="text-white/70 text-md leading-relaxed font-medium relative z-10">
+                            {process.point3}
                         </p>
                     </motion.div>
                 ))}

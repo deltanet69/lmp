@@ -1,17 +1,43 @@
 "use client";
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import { portfolioProjects } from '@/data/portfolio';
 
-const categories = ["All Projects", "Company Profile", "Video Animation", "Website Development"];
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
+
+interface Project {
+    id: string;
+    title: string;
+    category: string;
+    client: string | null;
+    years: string | null;
+    project_link: string | null;
+    description: string | null;
+    project_thumbnail: string | null;
+    is_featured: boolean | null;
+}
+
+const CATEGORIES = ["All Projects", "Company Profile", "Animation Video", "Website Development"];
 
 export default function LatestProject() {
+    const supabase = createClient();
+    const [projects, setProjects] = useState<Project[]>([]);
     const [activeTab, setActiveTab] = useState("All Projects");
+    const [loading, setLoading] = useState(true);
 
-    const filteredProjects = activeTab === "All Projects"
-        ? portfolioProjects
-        : portfolioProjects.filter(p => p.category === activeTab);
+    useEffect(() => {
+        // Show only featured projects on homepage
+        supabase
+            .from("portfolio")
+            .select("*")
+            .eq("is_featured", true)
+            .order("created_at", { ascending: false })
+            .then(({ data }) => { if (data) setProjects(data); setLoading(false); });
+    }, []);
+
+    const filtered = activeTab === "All Projects"
+        ? projects
+        : projects.filter((p) => p.category === activeTab);
 
     return (
         <section className="py-24 max-w-[1440px] mx-auto px-4 md:px-12">
@@ -24,23 +50,21 @@ export default function LatestProject() {
             >
                 <h2
                     className="text-7xl md:text-8xl font-black mb-4 uppercase tracking-tight text-transparent bg-clip-text drop-shadow-2xl"
-                    style={{ backgroundImage: 'linear-gradient(to top, #1B1830, #302C50, #726D96, #FFFFFF)' }}
+                    style={{ backgroundImage: "linear-gradient(to top, #1B1830, #302C50, #726D96, #FFFFFF)" }}
                 >
                     Latest Projects
                 </h2>
-                <p className="text-white/70 max-w-7xl mx-auto text-lg mb-12 font-medium">
+                <p className="text-white/70 max-w-2xl mx-auto text-lg mb-12 font-medium">
                     Kami menyediakan solusi komunikasi visual dan digital yang dirancang khusus untuk kebutuhan korporasi anda.
                 </p>
-
-                {/* Category Tabs */}
                 <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-                    {categories.map((cat) => (
+                    {CATEGORIES.map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setActiveTab(cat)}
                             className={`px-7 py-2.5 rounded-full text-sm md:text-base transition-all duration-300 cursor-pointer border ${activeTab === cat
-                                ? 'bg-primary text-white font-bold border-primary shadow-[0_0_25px_rgba(226,14,194,0.5)]'
-                                : 'bg-white/5 text-white/40 hover:bg-white/10 hover:text-white border-white/10'
+                                ? "bg-primary text-white font-bold border-primary shadow-[0_0_25px_rgba(226,14,194,0.5)]"
+                                : "bg-white/5 text-white/40 hover:bg-white/10 hover:text-white border-white/10"
                                 }`}
                         >
                             {cat}
@@ -49,67 +73,84 @@ export default function LatestProject() {
                 </div>
             </motion.div>
 
-            {/* Projects Grid */}
-            <motion.div
-                layout
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
-            >
-                <AnimatePresence mode="popLayout">
-                    {filteredProjects.map((project, idx) => (
-                        <Link key={project.id} href={`/portfolio/${project.id}`}>
+            {loading ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {[1, 2, 3].map((i) => (
+                        <div key={i} className="rounded-[2rem] bg-white/5 animate-pulse border border-white/5 h-[380px]" />
+                    ))}
+                </div>
+            ) : filtered.length === 0 ? (
+                <div className="text-center py-16 text-white/40 text-lg">
+                    {projects.length === 0
+                        ? "Belum ada featured projects. Tandai beberapa project sebagai Featured di admin."
+                        : "Tidak ada featured project di kategori ini."}
+                </div>
+            ) : (
+                <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                    <AnimatePresence mode="popLayout">
+                        {filtered.map((project, idx) => (
                             <motion.div
+                                key={project.id}
                                 layout
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                whileHover={{ y: -10 }}
-                                className="group relative rounded-[2.5rem] overflow-hidden bg-[#1D1B2E] aspect-[3/4] cursor-pointer transition-all duration-500 hover:shadow-[0_0_40px_rgba(226,14,194,0.2)] border border-white/5"
+                                transition={{ duration: 0.4, delay: idx * 0.07 }}
+                                whileHover={{ y: -6 }}
                             >
-                                {/* Project Image */}
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                />
-
-                                {/* Top Badges */}
-                                <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-20">
-                                    <span className="px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold rounded-full uppercase tracking-widest">
-                                        {project.category}
-                                    </span>
-                                    <span className="px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold rounded-full uppercase tracking-widest">
-                                        {project.year}
-                                    </span>
-                                </div>
-
-                                {/* Bottom Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 z-10"></div>
-
-                                {/* Content */}
-                                <div className="absolute bottom-0 left-0 w-full p-8 z-20">
-                                    <div className="flex items-end justify-between gap-4">
-                                        <div className="space-y-1">
-                                            <p className="text-secondary font-bold text-xs uppercase tracking-[0.2em] transform -translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                                                {project.subtitle}
-                                            </p>
-                                            <h3 className="text-xl md:text-xl font-bold text-white leading-tight">
-                                                {project.title}
-                                            </h3>
+                                <Link
+                                    href={`/portfolio/${project.id}`}
+                                    className="group flex flex-col h-[380px] rounded-[2rem] overflow-hidden bg-[#1D1B2E] border border-white/5 hover:border-primary/30 hover:shadow-[0_0_40px_rgba(226,14,194,0.15)] transition-all duration-500"
+                                >
+                                    <div className="relative w-full h-56 flex-shrink-0 overflow-hidden bg-white/5">
+                                        {project.project_thumbnail ? (
+                                            <img
+                                                src={project.project_thumbnail}
+                                                alt={project.title}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center text-6xl font-black text-white/10">
+                                                {project.title[0]}
+                                            </div>
+                                        )}
+                                        <div className="absolute top-4 left-4 right-4 flex justify-between">
+                                            <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold rounded-full uppercase tracking-widest">
+                                                {project.category}
+                                            </span>
+                                            {project.years && (
+                                                <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold rounded-full uppercase tracking-widest">
+                                                    {project.years}
+                                                </span>
+                                            )}
                                         </div>
-                                        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 shadow-lg shadow-black/40 border border-white/20">
-                                            <img src="/icun.png" alt="Arrow" className="w-5 h-5 object-contain brightness-0 invert" />
+                                        {/* Featured Badge */}
+                                        <div className="absolute bottom-3 left-4">
+                                            <span className="px-3 py-1 bg-yellow-400/20 backdrop-blur-md border border-yellow-400/40 text-yellow-300 text-[9px] font-bold rounded-full uppercase tracking-widest">
+                                                ⭐ Featured
+                                            </span>
                                         </div>
                                     </div>
-                                </div>
+                                    <div className="p-6 flex flex-col gap-2 flex-1 min-h-0">
+                                        <h3 className="text-white font-bold text-base leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                                            {project.title}
+                                        </h3>
+                                        {project.client && (
+                                            <p className="text-white/40 text-sm line-clamp-1">{project.client}</p>
+                                        )}
+                                    </div>
+                                </Link>
                             </motion.div>
-                        </Link>
-                    ))}
-                </AnimatePresence>
-            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
+            )}
 
             <div className="text-center mt-16">
-                <Link href="/portfolio" className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-full font-semibold transition-all tracking-wider text-lg shadow-[0_0_25px_rgba(226,14,194,0.3)] hover:shadow-[0_0_35px_rgba(226,14,194,0.5)]">
+                <Link
+                    href="/portfolio"
+                    className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-full font-semibold transition-all tracking-wider text-lg shadow-[0_0_25px_rgba(226,14,194,0.3)] hover:shadow-[0_0_35px_rgba(226,14,194,0.5)]"
+                >
                     View All Projects
                 </Link>
             </div>

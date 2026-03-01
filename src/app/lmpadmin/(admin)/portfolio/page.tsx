@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Plus, Eye, Pencil, Trash2, ExternalLink } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { logActivity } from "@/lib/activityLog";
 
 interface Portfolio {
     id: string;
@@ -35,7 +36,15 @@ export default function PortfolioPage() {
     const handleDelete = async (id: string) => {
         if (!confirm("Yakin ingin menghapus portfolio ini?")) return;
         setDeleting(id);
+        // Get title before deleting
+        const { data: row } = await supabase.from("portfolio").select("title").eq("id", id).single();
         await supabase.from("portfolio").delete().eq("id", id);
+        await logActivity({
+            action: "deleted",
+            entity: "portfolio",
+            entity_id: id,
+            entity_title: row?.title || "Unknown",
+        });
         await fetchPortfolios();
         setDeleting(null);
     };

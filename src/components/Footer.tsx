@@ -18,10 +18,15 @@ export default function Footer() {
                         </h2>
                         <p className="text-white/70 text-lg font-medium max-w-2xl leading-relaxed">Tim kami siap membantu dari riset hingga eksekusi. Diskusikan kebutuhan Anda sekarang juga..</p>
                     </div>
-                    <button className="flex items-center gap-5 bg-[#E20EC2] hover:bg-primary/90 text-white px-12 py-4 rounded-full font-bold transition-all hover:shadow-[5px_5px_40px_rgba(226,14,194,0.6)] text-md cursor-pointer group">
+                    <a
+                        href="https://api.whatsapp.com/send/?phone=%2B6281243664366&text=Halo+Langit+Media+Pro&type=phone_number&app_absent=0"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-5 bg-[#E20EC2] hover:bg-primary/90 text-white px-12 py-4 rounded-full font-bold transition-all hover:shadow-[5px_5px_40px_rgba(226,14,194,0.6)] text-md cursor-pointer group"
+                    >
                         <img src="/cs.png" alt="CS" className="w-10 h-10 object-contain group-hover:scale-110 transition-transform" />
                         <span>Hubungi Tim LMP</span>
-                    </button>
+                    </a>
                 </div>
 
                 {/* Footer 3 Sections */}
@@ -54,10 +59,10 @@ export default function Footer() {
                     <div>
                         <h3 className="text-2xl font-patua text-white mb-10 tracking-widest uppercase text-xl mt-3">Quick Links</h3>
                         <ul className="space-y-6">
-                            <li><Link href="/projects" className="text-white/60 hover:text-primary transition-colors text-lg font-medium">Projects</Link></li>
+                            <li><Link href="/about" className="text-white/60 hover:text-primary transition-colors text-lg font-medium">About Us</Link></li>
+                            <li><Link href="/portfolio" className="text-white/60 hover:text-primary transition-colors text-lg font-medium">Latest Projects</Link></li>
                             <li><Link href="/services" className="text-white/60 hover:text-primary transition-colors text-lg font-medium">Our Services</Link></li>
                             <li><Link href="/enquiry" className="text-white/60 hover:text-primary transition-colors text-lg font-medium">Enquiry</Link></li>
-                            <li><Link href="/contact" className="text-white/60 hover:text-primary transition-colors text-lg font-medium">Contact Us</Link></li>
                         </ul>
                     </div>
 

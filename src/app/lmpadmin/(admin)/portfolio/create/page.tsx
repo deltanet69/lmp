@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ArrowLeft, Upload, X, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { logActivity } from "@/lib/activityLog";
 import dynamic from "next/dynamic";
 
 const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), {
@@ -29,6 +30,7 @@ export default function CreatePortfolioPage() {
     const [client, setClient] = useState("");
     const [projectLink, setProjectLink] = useState("");
     const [years, setYears] = useState("");
+    const [isFeatured, setIsFeatured] = useState(false);
     const [thumbnail, setThumbnail] = useState<File | null>(null);
     const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
     const [album, setAlbum] = useState<File[]>([]);
@@ -57,8 +59,13 @@ export default function CreatePortfolioPage() {
     const uploadFile = async (file: File, folder: string): Promise<string | null> => {
         const ext = file.name.split(".").pop();
         const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-        const { error } = await supabase.storage.from("portfolio").upload(path, file);
-        if (error) return null;
+        const { error: uploadError } = await supabase.storage
+            .from("portfolio")
+            .upload(path, file, { upsert: true });
+        if (uploadError) {
+            console.error("Storage upload error:", uploadError);
+            throw new Error(`Upload failed: ${uploadError.message}`);
+        }
         const { data } = supabase.storage.from("portfolio").getPublicUrl(path);
         return data.publicUrl;
     };
@@ -69,35 +76,49 @@ export default function CreatePortfolioPage() {
         if (!title.trim()) { setError("Title is required."); return; }
         setLoading(true);
 
-        let thumbnailUrl: string | null = null;
-        if (thumbnail) {
-            thumbnailUrl = await uploadFile(thumbnail, "thumbnails");
-        }
+        try {
+            let thumbnailUrl: string | null = null;
+            if (thumbnail) {
+                thumbnailUrl = await uploadFile(thumbnail, "thumbnails");
+            }
 
-        const albumUrls: string[] = [];
-        for (const img of album) {
-            const url = await uploadFile(img, "album");
-            if (url) albumUrls.push(url);
-        }
+            const albumUrls: string[] = [];
+            for (const img of album) {
+                const url = await uploadFile(img, "album");
+                if (url) albumUrls.push(url);
+            }
 
-        const { error: insertError } = await supabase.from("portfolio").insert({
-            title,
-            description,
-            category,
-            client,
-            project_link: projectLink,
-            years,
-            project_thumbnail: thumbnailUrl,
-            project_album: albumUrls,
-        });
+            const { error: insertError } = await supabase.from("portfolio").insert({
+                title,
+                description,
+                category,
+                client,
+                project_link: projectLink,
+                years,
+                is_featured: isFeatured,
+                project_thumbnail: thumbnailUrl,
+                project_album: albumUrls,
+            });
 
-        if (insertError) {
-            setError(insertError.message);
+            if (insertError) {
+                setError(insertError.message);
+                setLoading(false);
+                return;
+            }
+
+            await logActivity({
+                action: "created",
+                entity: "portfolio",
+                entity_id: "new",
+                entity_title: title,
+            });
+
+            router.push("/lmpadmin/portfolio");
+        } catch (err: unknown) {
+            const msg = err instanceof Error ? err.message : "Upload failed. Check that you are logged in and Supabase storage policies allow authenticated uploads.";
+            setError(msg);
             setLoading(false);
-            return;
         }
-
-        router.push("/lmpadmin/portfolio");
     };
 
     return (
@@ -278,6 +299,26 @@ export default function CreatePortfolioPage() {
                             placeholder="https://..."
                             className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50 focus:border-[#80FF00] transition-all"
                         />
+                    </div>
+
+                    {/* Featured Project */}
+                    <div className="bg-white border border-slate-200 rounded-xl p-5">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-semibold text-slate-700">Featured Project</p>
+                                <p className="text-xs text-slate-400 mt-0.5">Tampilkan di homepage Latest Projects</p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setIsFeatured((v) => !v)}
+                                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isFeatured ? "bg-[#80FF00]" : "bg-slate-200"}`}
+                            >
+                                <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${isFeatured ? "translate-x-6" : "translate-x-1"}`} />
+                            </button>
+                        </div>
+                        {isFeatured && (
+                            <p className="text-xs text-green-600 font-medium mt-3">⭐ Project ini akan tampil di homepage</p>
+                        )}
                     </div>
                 </div>
             </div>

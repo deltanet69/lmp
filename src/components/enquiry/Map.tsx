@@ -1,10 +1,9 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Fix for default marker icons in React-Leaflet
 const icon = L.icon({
     iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
     iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
@@ -12,28 +11,39 @@ const icon = L.icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    shadowSize: [41, 41],
 });
 
 export default function Map() {
-    // Initial coordinates for Bekasi (approximate)
     const position: [number, number] = [-6.1806227, 106.9936612];
 
-    // Clean up map instance on unmount to prevent "Map container is already initialized" errors
+    // Generate a truly unique ID for each mount to prevent ID collisions
+    // especially during HMR or fast navigation.
+    const [mapId] = useState(() => `leaflet-map-${Math.random().toString(36).substring(2, 9)}`);
+
+    // Clean up the Leaflet container reference on unmount more thoroughly
     useEffect(() => {
         return () => {
-            const container = L.DomUtil.get('map-container');
-            if (container != null) {
-                // @ts-expect-error
-                container._leaflet_id = null;
+            const container = document.getElementById(mapId);
+            if (container) {
+                // Clear the internal Leaflet ID associated with this DOM element
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (container as any)._leaflet_id = null;
+
+                // Also check if any parent has it (sometimes happens with react-leaflet)
+                if (container.parentElement) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    (container.parentElement as any)._leaflet_id = null;
+                }
             }
-        }
-    }, [])
+        };
+    }, [mapId]);
 
     return (
         <div className="w-full h-[500px] z-0 relative isolate">
             <MapContainer
-                id="map-container"
+                key={mapId}
+                id={mapId}
                 center={position}
                 zoom={15}
                 scrollWheelZoom={true}

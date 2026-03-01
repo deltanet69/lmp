@@ -48,7 +48,7 @@ export default function Sidebar({ collapsed, onClose }: SidebarProps) {
             <div className="h-16 flex items-center justify-between px-4 border-b border-slate-700/50">
                 {!collapsed ? (
                     <div className="flex items-center justify-between w-full">
-                        <Image src="/lmp.png" alt="LMP Logo" width={130} height={40} className="object-contain" />
+                        <Image src="/lmp.png" alt="LMP Logo" width={180} height={40} className="object-contain" />
                         <button onClick={onClose} className="lg:hidden text-slate-400 hover:text-white">
                             <X className="w-5 h-5" />
                         </button>
@@ -78,8 +78,8 @@ export default function Sidebar({ collapsed, onClose }: SidebarProps) {
                                         href={item.href}
                                         onClick={onClose}
                                         className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${isActive
-                                                ? "bg-[#80FF00]/10 text-[#80FF00] font-semibold"
-                                                : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                                            ? "bg-[#80FF00]/10 text-[#80FF00] font-semibold"
+                                            : "text-slate-400 hover:bg-slate-800 hover:text-white"
                                             } ${collapsed ? "justify-center" : ""}`}
                                         title={collapsed ? item.name : undefined}
                                     >
@@ -108,8 +108,8 @@ export default function Sidebar({ collapsed, onClose }: SidebarProps) {
                                         href={item.href}
                                         onClick={onClose}
                                         className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${isActive
-                                                ? "bg-[#80FF00]/10 text-[#80FF00] font-semibold"
-                                                : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                                            ? "bg-[#80FF00]/10 text-[#80FF00] font-semibold"
+                                            : "text-slate-400 hover:bg-slate-800 hover:text-white"
                                             } ${collapsed ? "justify-center" : ""}`}
                                         title={collapsed ? item.name : undefined}
                                     >

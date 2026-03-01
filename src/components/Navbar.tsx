@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
@@ -12,6 +13,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isHomeDropdownOpen, setIsHomeDropdownOpen] = useState(false);
@@ -50,7 +52,7 @@ export default function Navbar() {
                         <div key={link.name} className="relative group">
                             {link.isDropdown ? (
                                 <div
-                                    className="cursor-pointer text-md tracking-wide text-white/90 hover:text-[#E20EC2] transition-colors flex items-center gap-1 py-2"
+                                    className={`cursor-pointer text-md tracking-wide hover:text-[#E20EC2] transition-colors flex items-center gap-1 py-2 ${pathname === '/' ? 'text-[#E20EC2] font-bold' : 'text-white/90'}`}
                                     onMouseEnter={() => setIsHomeDropdownOpen(true)}
                                     onMouseLeave={() => setIsHomeDropdownOpen(false)}
                                 >
@@ -80,7 +82,10 @@ export default function Navbar() {
                                     </AnimatePresence>
                                 </div>
                             ) : (
-                                <Link href={link.href!} className="text-md tracking-wide text-white/90 hover:text-[#E20EC2] transition-colors py-2 block">
+                                <Link
+                                    href={link.href!}
+                                    className={`text-md tracking-wide hover:text-[#E20EC2] transition-colors py-2 block ${pathname?.startsWith(link.href!) ? 'text-[#E20EC2] font-bold' : 'text-white/90'}`}
+                                >
                                     {link.name}
                                 </Link>
                             )}
@@ -126,7 +131,7 @@ export default function Navbar() {
                                 <div key={link.name} className="border-b border-white/10 pb-4">
                                     {link.isDropdown ? (
                                         <div className="flex flex-col gap-4">
-                                            <span className="text-2xl font-bold text-white/50">{link.name}</span>
+                                            <span className={`text-2xl font-bold ${pathname === '/' ? 'text-[#E20EC2]' : 'text-white/50'}`}>{link.name}</span>
                                             <div className="flex flex-col gap-3 pl-4 border-l-2 border-[#E20EC2]">
                                                 <Link
                                                     href="/?variant=1"
@@ -147,7 +152,7 @@ export default function Navbar() {
                                     ) : (
                                         <Link
                                             href={link.href!}
-                                            className="text-2xl font-bold text-white/90 hover:text-[#E20EC2] block"
+                                            className={`text-2xl font-bold hover:text-[#E20EC2] block ${pathname?.startsWith(link.href!) ? 'text-[#E20EC2]' : 'text-white/90'}`}
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >
                                             {link.name}
