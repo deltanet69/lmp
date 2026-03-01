@@ -1,14 +1,18 @@
 "use client";
 import { motion } from 'framer-motion';
 
-const items = [
+const defaultItems = [
     "Company profile", "Animation", "website development",
     "Company profile", "Animation", "website development",
     "Company profile", "Animation", "website development",
     "Company profile", "Animation", "website development",
 ];
 
-export default function RunningText() {
+interface RunningTextProps {
+    items?: string[];
+}
+
+export default function RunningText({ items = defaultItems }: RunningTextProps) {
     return (
         <div className="w-full bg-[#0C0F18] mt-20 py-8 md:py-10 overflow-hidden flex whitespace-nowrap overflow-x-hidden">
             <motion.div

@@ -18,7 +18,7 @@ export default function Footer() {
                         </h2>
                         <p className="text-white/70 text-lg font-medium max-w-2xl leading-relaxed">Tim kami siap membantu dari riset hingga eksekusi. Diskusikan kebutuhan Anda sekarang juga..</p>
                     </div>
-                    <button className="flex items-center gap-5 bg-[#E20EC2] hover:bg-primary/90 text-white px-12 py-4 rounded-full font-bold transition-all hover:shadow-[5px_5px_40px_rgba(226,14,194,0.6)] text-xl cursor-pointer group">
+                    <button className="flex items-center gap-5 bg-[#E20EC2] hover:bg-primary/90 text-white px-12 py-4 rounded-full font-bold transition-all hover:shadow-[5px_5px_40px_rgba(226,14,194,0.6)] text-md cursor-pointer group">
                         <img src="/cs.png" alt="CS" className="w-10 h-10 object-contain group-hover:scale-110 transition-transform" />
                         <span>Hubungi Tim LMP</span>
                     </button>
@@ -67,16 +67,17 @@ export default function Footer() {
                         <ul className="space-y-8">
                             <li className="flex items-center gap-6 group">
                                 <img src="/gtc3.png" alt="Phone" className="w-7 h-7 object-contain group-hover:scale-110 transition-transform" />
-                                <Link href="tel:+62123456789" className="text-white/60 group-hover:text-primary transition-colors text-lg font-medium tracking-wide">+62 123 4567 890</Link>
+                                <Link href="https://api.whatsapp.com/send/?phone=%2B6281243664366&text=Halo+Langit+Media+Pro&type=phone_number&app_absent=0"
+                                    className="text-white/60 group-hover:text-primary transition-colors text-lg font-medium tracking-wide">+62 81243664366</Link>
                             </li>
                             <li className="flex items-center gap-6 group">
                                 <img src="/gtc2.png" alt="Email" className="w-7 h-7 object-contain group-hover:scale-110 transition-transform" />
-                                <Link href="mailto:contact@langitmediapro.id" className="text-white/60 group-hover:text-primary transition-colors text-lg font-medium tracking-wide">contact@langitmediapro.id</Link>
+                                <Link href="mailto:contact@langitmediapro.com" className="text-white/60 group-hover:text-primary transition-colors text-lg font-medium tracking-wide">contact@langitmediapro.com</Link>
                             </li>
                             <li className="flex items-center gap-6 group">
                                 <img src="/gtc1.png" alt="Location" className="w-7 h-7 object-contain group-hover:scale-110 transition-transform" />
                                 <span className="text-white/60 group-hover:text-primary transition-colors text-lg font-medium tracking-wide leading-relaxed">
-                                    123 Media Street, Creative City
+                                    Taman Harapan, Bekasi, Indonesia
                                 </span>
                             </li>
                         </ul>

@@ -1,14 +1,22 @@
 import Hero from "@/components/home/Hero";
+import Hero2 from "@/components/home/Hero2";
 import Statistics from "@/components/home/Statistics";
 import AboutUs from "@/components/home/AboutUs";
 import RunningText from "@/components/home/RunningText";
 import OurService from "@/components/home/OurService";
 import LatestProject from "@/components/home/LatestProject";
 
-export default function Home() {
+type Props = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export default async function Home(props: Props) {
+  const searchParams = await props.searchParams;
+  const variant = searchParams.variant;
+
   return (
     <div className="flex flex-col w-full">
-      <Hero />
+      {variant === '2' ? <Hero2 /> : <Hero />}
       <Statistics />
       <AboutUs />
       <RunningText />
