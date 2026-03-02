@@ -26,7 +26,7 @@ export default function Gallery() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-4xl md:text-5xl font-black text-white leading-tight capitalize">
+                        <h2 className="text-3xl md:text-5xl font-black text-white leading-tight capitalize">
                             Gallery langit media pro
                         </h2>
                     </motion.div>

@@ -23,7 +23,7 @@ export default function Hero() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
                     {/* Left Side */}
-                    <div className="text-white space-y-8 max-w-4xl">
+                    <div className="text-white px-2 lg:px-0 space-y-8 max-w-4xl">
                         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-7 py-2 w-auto">
                             <span className="w-2 h-2 rounded-full bg-[#00e5ff]  "></span>
                             <span className="text-xs md:text-sm  text-white/90 tracking-widest ">Welcome To</span>
