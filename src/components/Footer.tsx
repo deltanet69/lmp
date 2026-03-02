@@ -13,7 +13,7 @@ export default function Footer() {
                 {/* CTA Section */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-10 py-24 mb-16 border-b border-white/10">
                     <div className="mb-8 md:mb-0 text-center md:text-left">
-                        <h2 className="text-4xl md:text-5xl leading-tight font-patua text-white mb-6">Siap Mewujudkan Kebutuhan Visual<br />
+                        <h2 className="text-2xl md:text-5xl leading-tight font-patua text-white mb-6">Siap Mewujudkan Kebutuhan Visual<br />
                             Perusahaan Anda?
                         </h2>
                         <p className="text-white/70 text-lg font-medium max-w-2xl leading-relaxed">Tim kami siap membantu dari riset hingga eksekusi. Diskusikan kebutuhan Anda sekarang juga..</p>
@@ -22,7 +22,7 @@ export default function Footer() {
                         href="https://api.whatsapp.com/send/?phone=%2B6281243664366&text=Halo+Langit+Media+Pro&type=phone_number&app_absent=0"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-5 bg-[#E20EC2] hover:bg-primary/90 text-white px-12 py-4 rounded-full font-bold transition-all hover:shadow-[5px_5px_40px_rgba(226,14,194,0.6)] text-md cursor-pointer group"
+                        className="inline-flex items-center gap-5 bg-[#E20EC2] hover:bg-primary/90 text-white px-12 py-3 rounded-full font-bold transition-all hover:shadow-[5px_5px_40px_rgba(226,14,194,0.6)] text-md cursor-pointer group"
                     >
                         <img src="/cs.png" alt="CS" className="w-10 h-10 object-contain group-hover:scale-110 transition-transform" />
                         <span>Hubungi Tim LMP</span>
@@ -40,16 +40,16 @@ export default function Footer() {
                         </p>
                         <div className="flex items-center gap-8">
                             {/* Social links */}
-                            <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 transition-opacity">
+                            <Link href="https://www.instagram.com/langitmediapro/" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 transition-opacity">
                                 <img src="/ig.png" alt="Instagram" className="w-8 h-8 object-contain" />
                             </Link>
-                            <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 transition-opacity">
+                            <Link href="https://www.facebook.com/langitmediapro/" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 transition-opacity">
                                 <img src="/fb.png" alt="Facebook" className="w-8 h-8 object-contain" />
                             </Link>
-                            <Link href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 transition-opacity">
+                            <Link href="https://www.youtube.com/@Langitmediapro_official" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 transition-opacity">
                                 <img src="/yt.png" alt="YouTube" className="w-8 h-8 object-contain" />
                             </Link>
-                            <Link href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 transition-opacity">
+                            <Link href="https://www.tiktok.com/@langitmediapro" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 transition-opacity">
                                 <img src="/tk.png" alt="TikTok" className="w-8 h-8 object-contain" />
                             </Link>
                         </div>

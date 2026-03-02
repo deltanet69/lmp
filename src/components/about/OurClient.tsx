@@ -55,7 +55,7 @@ export default function OurClient() {
                                 key={i}
                                 src={client.src}
                                 alt={client.alt}
-                                className="h-6 md:h-8 w-auto object-contain opacity-60 hover:opacity-100  transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                                className="h-10 md:h-12 w-auto object-contain opacity-60 hover:opacity-100  transition-opacity duration-300 filter grayscale hover:grayscale-0"
                             />
                         ))}
                     </motion.div>
