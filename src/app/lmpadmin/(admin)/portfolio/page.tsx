@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
-import { Plus, Eye, Pencil, Trash2, ExternalLink } from "lucide-react";
+import { Plus, Eye, Pencil, Trash2, ExternalLink, Search, X, SlidersHorizontal } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { logActivity } from "@/lib/activityLog";
 
@@ -22,10 +22,19 @@ const QUALITY_BADGE: Record<string, { label: string; className: string }> = {
     high: { label: "High", className: "bg-amber-50 text-amber-700 border border-amber-300" },
 };
 
+const CATEGORIES = ["Company Profile", "Animation Video", "Website Development"];
+const QUALITIES = ["standard", "medium", "high"];
+
 export default function PortfolioPage() {
     const [portfolios, setPortfolios] = useState<Portfolio[]>([]);
     const [loading, setLoading] = useState(true);
     const [deleting, setDeleting] = useState<string | null>(null);
+
+    // ── Filter state ──────────────────────────────────────────────────────────
+    const [search, setSearch] = useState("");
+    const [catFilter, setCatFilter] = useState("all");
+    const [qualFilter, setQualFilter] = useState("all");
+
     const supabase = createClient();
 
     const fetchPortfolios = async () => {
@@ -40,10 +49,28 @@ export default function PortfolioPage() {
 
     useEffect(() => { fetchPortfolios(); }, []);
 
+    // ── Filtered list ─────────────────────────────────────────────────────────
+    const filtered = useMemo(() => {
+        const q = search.toLowerCase().trim();
+        return portfolios.filter((p) => {
+            const matchSearch = !q || p.title.toLowerCase().includes(q) || (p.client || "").toLowerCase().includes(q);
+            const matchCat = catFilter === "all" || p.category === catFilter;
+            const matchQual = qualFilter === "all" || p.project_quality === qualFilter;
+            return matchSearch && matchCat && matchQual;
+        });
+    }, [portfolios, search, catFilter, qualFilter]);
+
+    const hasActiveFilter = search || catFilter !== "all" || qualFilter !== "all";
+
+    const clearFilters = () => {
+        setSearch("");
+        setCatFilter("all");
+        setQualFilter("all");
+    };
+
     const handleDelete = async (id: string) => {
         if (!confirm("Yakin ingin menghapus portfolio ini?")) return;
         setDeleting(id);
-        // Get title before deleting
         const { data: row } = await supabase.from("portfolio").select("title").eq("id", id).single();
         await supabase.from("portfolio").delete().eq("id", id);
         await logActivity({
@@ -58,6 +85,7 @@ export default function PortfolioPage() {
 
     return (
         <div className="space-y-6">
+            {/* ── Header ── */}
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-2xl font-bold text-slate-800">Portfolio</h1>
@@ -72,12 +100,82 @@ export default function PortfolioPage() {
                 </Link>
             </div>
 
+            {/* ── Filter Bar ── */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+                <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+                    {/* Search */}
+                    <div className="relative flex-1">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                        <input
+                            type="text"
+                            placeholder="Cari project atau client..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50 focus:border-[#19172A]/30 transition-all"
+                        />
+                    </div>
+
+                    {/* Category filter */}
+                    <div className="flex items-center gap-2">
+                        <SlidersHorizontal className="w-4 h-4 text-slate-400 shrink-0" />
+                        <select
+                            value={catFilter}
+                            onChange={(e) => setCatFilter(e.target.value)}
+                            className="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50 bg-white min-w-[160px]"
+                        >
+                            <option value="all">Semua Category</option>
+                            {CATEGORIES.map((c) => (
+                                <option key={c} value={c}>{c}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Quality filter */}
+                    <div>
+                        <select
+                            value={qualFilter}
+                            onChange={(e) => setQualFilter(e.target.value)}
+                            className="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50 bg-white min-w-[150px]"
+                        >
+                            <option value="all">Semua Quality</option>
+                            {QUALITIES.map((q) => (
+                                <option key={q} value={q}>{QUALITY_BADGE[q]?.label}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Clear button */}
+                    {hasActiveFilter && (
+                        <button
+                            onClick={clearFilters}
+                            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 text-sm font-medium transition-colors shrink-0"
+                        >
+                            <X className="w-3.5 h-3.5" />
+                            Reset
+                        </button>
+                    )}
+                </div>
+
+                {/* Result count */}
+                <div className="mt-3 flex items-center gap-2">
+                    <span className="text-xs text-slate-500">
+                        Menampilkan <span className="font-semibold text-slate-700">{filtered.length}</span> dari <span className="font-semibold text-slate-700">{portfolios.length}</span> project
+                    </span>
+                    {hasActiveFilter && (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#19172A] text-[#80FF00]">
+                            FILTER AKTIF
+                        </span>
+                    )}
+                </div>
+            </div>
+
+            {/* ── Table ── */}
             <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead>
                             <tr className="border-b border-slate-200 bg-slate-50">
-                                <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">#</th>
+                                <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider w-8">#</th>
                                 <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Project Name</th>
                                 <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Category</th>
                                 <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Quality</th>
@@ -89,14 +187,28 @@ export default function PortfolioPage() {
                         <tbody className="divide-y divide-slate-100">
                             {loading ? (
                                 <tr>
-                                    <td colSpan={6} className="py-16 text-center text-slate-400">Loading portfolios...</td>
+                                    <td colSpan={7} className="py-16 text-center text-slate-400">Loading portfolios...</td>
                                 </tr>
-                            ) : portfolios.length === 0 ? (
+                            ) : filtered.length === 0 ? (
                                 <tr>
-                                    <td colSpan={6} className="py-16 text-center text-slate-400">No portfolios yet. Click "Add Portfolio" to create one.</td>
+                                    <td colSpan={7} className="py-16 text-center">
+                                        <div className="flex flex-col items-center gap-2 text-slate-400">
+                                            <Search className="w-8 h-8 opacity-30" />
+                                            <p className="text-sm">
+                                                {portfolios.length === 0
+                                                    ? "Belum ada portfolio. Klik \"Add Portfolio\" untuk menambahkan."
+                                                    : "Tidak ada project yang cocok dengan filter ini."}
+                                            </p>
+                                            {hasActiveFilter && (
+                                                <button onClick={clearFilters} className="text-xs text-blue-500 hover:underline">
+                                                    Hapus semua filter
+                                                </button>
+                                            )}
+                                        </div>
+                                    </td>
                                 </tr>
                             ) : (
-                                portfolios.map((p, i) => (
+                                filtered.map((p, i) => (
                                     <tr key={p.id} className="hover:bg-slate-50 transition-colors">
                                         <td className="px-5 py-3.5 text-slate-400 font-mono text-xs">{i + 1}</td>
                                         <td className="px-5 py-3.5 font-semibold text-slate-700">
