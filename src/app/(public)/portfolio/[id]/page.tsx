@@ -18,6 +18,7 @@ interface Project {
     description: string | null;
     project_thumbnail: string | null;
     project_album: string[] | null;
+    project_quality: string | null;
 }
 
 /** Strip HTML tags and return plain text for excerpt */
@@ -145,6 +146,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
                                 <h3 className="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4">Project Info</h3>
                                 <div className="space-y-5">
                                     <InfoRow label="Project Name" value={project.title} />
+                                    {project.project_quality && <QualityBadge quality={project.project_quality} />}
                                     {project.client && <InfoRow label="Client" value={project.client} />}
                                     <InfoRow label="Category" value={project.category} highlight />
                                     {project.years && <InfoRow label="Production Date" value={project.years} />}
@@ -225,6 +227,77 @@ function InfoRow({ label, value, highlight = false }: { label: string; value: st
         <div className="space-y-1">
             <p className="text-white/50 text-sm uppercase tracking-wider font-bold">{label}</p>
             <p className={`font-medium text-base ${highlight ? "text-primary font-bold" : "text-white"}`}>{value}</p>
+        </div>
+    );
+}
+
+const QUALITY_CONFIG: Record<string, {
+    label: string;
+    sublabel: string;
+    gradient: string;
+    glow: string;
+    border: string;
+    icon: string;
+}> = {
+    standard: {
+        label: "Standard Quality",
+        sublabel: "Produksi Standar",
+        gradient: "from-slate-400 via-slate-300 to-slate-500",
+        glow: "shadow-[0_0_20px_rgba(148,163,184,0.4)]",
+        border: "border-slate-400/40",
+        icon: "⚡",
+    },
+    medium: {
+        label: "Medium Quality",
+        sublabel: "Enhanced Production",
+        gradient: "from-blue-400 via-cyan-300 to-blue-600",
+        glow: "shadow-[0_0_25px_rgba(59,130,246,0.5)]",
+        border: "border-blue-400/50",
+        icon: "💎",
+    },
+    high: {
+        label: "High Quality",
+        sublabel: "Premium Cinematic",
+        gradient: "from-amber-300 via-yellow-200 to-orange-400",
+        glow: "shadow-[0_0_30px_rgba(251,191,36,0.6)]",
+        border: "border-amber-400/60",
+        icon: "👑",
+    },
+};
+
+function QualityBadge({ quality }: { quality: string }) {
+    const cfg = QUALITY_CONFIG[quality];
+    if (!cfg) return null;
+    return (
+        <div className="space-y-1.5">
+            <p className="text-white/50 text-sm uppercase tracking-wider font-bold">Project Quality</p>
+            <div
+                className={`
+                    relative overflow-hidden rounded-2xl border ${cfg.border} ${cfg.glow}
+                    bg-white/5 backdrop-blur-sm px-4 py-3
+                `}
+            >
+                {/* Shimmer overlay */}
+                <div
+                    className="absolute inset-0 opacity-10"
+                    style={{
+                        background: `linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.6) 50%, transparent 60%)`,
+                        backgroundSize: "200% 100%",
+                        animation: "shimmer 3s infinite",
+                    }}
+                />
+                <div className="relative flex items-center gap-3">
+                    <span className="text-2xl">{cfg.icon}</span>
+                    <div>
+                        <p
+                            className={`font-black text-base bg-gradient-to-r ${cfg.gradient} bg-clip-text text-transparent leading-tight`}
+                        >
+                            {cfg.label}
+                        </p>
+                        <p className="text-white/50 text-xs font-medium mt-0.5">{cfg.sublabel}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
