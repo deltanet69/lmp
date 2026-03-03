@@ -3,22 +3,24 @@ import { Resend } from "resend";
 import { adminTemplate } from "@/lib/supabase/functions/send-enquiry-notification/templates/admin-notification";
 import { userTemplate } from "@/lib/supabase/functions/send-enquiry-notification/templates/user-autoresponse";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// SENDER: Must match a verified domain in your Resend dashboard.
-// If langitmediapro.com is verified → use it directly.
-// If using Resend free tier without domain verification → use: onboarding@resend.dev
-const SENDER_EMAIL = process.env.SENDER_EMAIL || "onboarding@resend.dev";
-const SENDER_NAME = "Langit Media Pro";
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@langitmediapro.com";
+// NOTE: Resend and env vars are initialized INSIDE the handler (lazy init).
+// If initialized at module level, Next.js will throw "Missing API key" during `next build`
+// because env vars are not available at build time for Route Handlers.
 
 export async function POST(req: NextRequest) {
     try {
-        // Validate API key
-        if (!process.env.RESEND_API_KEY) {
+        // Validate API key at runtime, not build time
+        const apiKey = process.env.RESEND_API_KEY;
+        if (!apiKey) {
             console.error("[send-enquiry-email] RESEND_API_KEY is not set!");
             return NextResponse.json({ error: "Email service not configured" }, { status: 503 });
         }
+
+        // Lazy init — runs only on actual request, never during build
+        const resend = new Resend(apiKey);
+        const SENDER_EMAIL = process.env.SENDER_EMAIL || "onboarding@resend.dev";
+        const SENDER_NAME = "Langit Media Pro";
+        const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@langitmediapro.com";
 
         const body = await req.json();
         const { full_name, email_address, phone_number, project_type, message } = body;
@@ -98,11 +100,10 @@ export async function POST(req: NextRequest) {
             success: true,
             adminEmailSent: adminOk,
             userEmailSent: userOk,
-            // Include error details in response for easier debugging
             ...((!adminOk || !userOk) && {
                 errors: {
-                    ...((!adminOk) && { admin: JSON.stringify(adminError) }),
-                    ...((!userOk) && { user: JSON.stringify(userError) }),
+                    ...(!adminOk && { admin: JSON.stringify(adminError) }),
+                    ...(!userOk && { user: JSON.stringify(userError) }),
                 }
             }),
         });
