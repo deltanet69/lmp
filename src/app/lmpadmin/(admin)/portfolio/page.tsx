@@ -12,8 +12,15 @@ interface Portfolio {
     category: string;
     client: string;
     project_link: string;
+    project_quality: string | null;
     created_at: string;
 }
+
+const QUALITY_BADGE: Record<string, { label: string; className: string }> = {
+    standard: { label: "Standard", className: "bg-slate-100 text-slate-600 border border-slate-300" },
+    medium: { label: "Medium", className: "bg-blue-50 text-blue-700 border border-blue-300" },
+    high: { label: "High", className: "bg-amber-50 text-amber-700 border border-amber-300" },
+};
 
 export default function PortfolioPage() {
     const [portfolios, setPortfolios] = useState<Portfolio[]>([]);
@@ -25,7 +32,7 @@ export default function PortfolioPage() {
         setLoading(true);
         const { data, error } = await supabase
             .from("portfolio")
-            .select("id, title, category, client, project_link, created_at")
+            .select("id, title, category, client, project_link, project_quality, created_at")
             .order("created_at", { ascending: false });
         if (!error && data) setPortfolios(data);
         setLoading(false);
@@ -70,9 +77,10 @@ export default function PortfolioPage() {
                     <table className="w-full text-sm">
                         <thead>
                             <tr className="border-b border-slate-200 bg-slate-50">
-                                <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider w-8">#</th>
+                                <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">#</th>
                                 <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Project Name</th>
                                 <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Category</th>
+                                <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Quality</th>
                                 <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Client</th>
                                 <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Project Link</th>
                                 <th className="text-center px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Action</th>
@@ -103,6 +111,15 @@ export default function PortfolioPage() {
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                                                 {p.category || "—"}
                                             </span>
+                                        </td>
+                                        <td className="px-5 py-3.5">
+                                            {p.project_quality && QUALITY_BADGE[p.project_quality] ? (
+                                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${QUALITY_BADGE[p.project_quality].className}`}>
+                                                    {QUALITY_BADGE[p.project_quality].label}
+                                                </span>
+                                            ) : (
+                                                <span className="text-slate-400 text-xs">—</span>
+                                            )}
                                         </td>
                                         <td className="px-5 py-3.5 text-slate-600">{p.client || "—"}</td>
                                         <td className="px-5 py-3.5">

@@ -15,6 +15,12 @@ const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor")
 
 const CATEGORIES = ["Company Profile", "Animation Video", "Website Development"];
 
+const PROJECT_QUALITIES = [
+    { value: "standard", label: "Standard Quality", desc: "Produksi standar, efisien & tepat waktu", color: "text-slate-600 bg-slate-100 border-slate-300" },
+    { value: "medium", label: "Medium Quality", desc: "Kualitas menengah dengan detail lebih baik", color: "text-blue-700 bg-blue-50 border-blue-300" },
+    { value: "high", label: "High Quality", desc: "Premium production, sinematik & prestisius", color: "text-amber-700 bg-amber-50 border-amber-300" },
+];
+
 export default function EditPortfolioPage() {
     const router = useRouter();
     const params = useParams();
@@ -26,6 +32,7 @@ export default function EditPortfolioPage() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
+    const [projectQuality, setProjectQuality] = useState("");
     const [client, setClient] = useState("");
     const [projectLink, setProjectLink] = useState("");
     const [years, setYears] = useState("");
@@ -44,6 +51,7 @@ export default function EditPortfolioPage() {
                 setTitle(data.title || "");
                 setDescription(data.description || "");
                 setCategory(data.category || "");
+                setProjectQuality(data.project_quality || "");
                 setClient(data.client || "");
                 setProjectLink(data.project_link || "");
                 setYears(data.years || "");
@@ -102,7 +110,9 @@ export default function EditPortfolioPage() {
             }
 
             const { error: updateError } = await supabase.from("portfolio").update({
-                title, description, category, client,
+                title, description, category,
+                project_quality: projectQuality || null,
+                client,
                 project_link: projectLink, years,
                 is_featured: isFeatured,
                 project_thumbnail: thumbnailUrl,
@@ -220,6 +230,33 @@ export default function EditPortfolioPage() {
                             <option value="">Select category...</option>
                             {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
                         </select>
+                    </div>
+
+                    {/* Project Quality */}
+                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
+                        <label className="block text-sm font-semibold text-slate-700">Project Quality</label>
+                        <div className="space-y-2">
+                            {PROJECT_QUALITIES.map((q) => (
+                                <button
+                                    key={q.value}
+                                    type="button"
+                                    onClick={() => setProjectQuality(projectQuality === q.value ? "" : q.value)}
+                                    className={`w-full text-left px-3 py-2.5 rounded-lg border transition-all ${projectQuality === q.value
+                                            ? q.color + " font-semibold"
+                                            : "border-slate-200 text-slate-600 hover:bg-slate-50"
+                                        }`}
+                                >
+                                    <p className="text-sm font-medium">{q.label}</p>
+                                    <p className="text-xs opacity-70 mt-0.5">{q.desc}</p>
+                                </button>
+                            ))}
+                        </div>
+                        {projectQuality && (
+                            <button type="button" onClick={() => setProjectQuality("")}
+                                className="text-xs text-slate-400 hover:text-slate-600 underline">
+                                Hapus pilihan
+                            </button>
+                        )}
                     </div>
                     <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
                         <label className="block text-sm font-semibold text-slate-700">Client</label>
