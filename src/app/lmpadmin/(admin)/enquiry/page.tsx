@@ -10,6 +10,13 @@ import { createClient } from "@/lib/supabase/client";
 
 type Status = "pending" | "contacted" | "rejected";
 
+// Map any unknown/legacy DB status values to a known Status
+function normalizeStatus(raw: string | null | undefined): Status {
+    if (raw === "contacted") return "contacted";
+    if (raw === "rejected") return "rejected";
+    return "pending"; // covers "new", null, undefined, or anything else
+}
+
 interface Enquiry {
     id: string;
     full_name: string;
@@ -285,7 +292,7 @@ export default function EnquiryPage() {
                                 </tr>
                             ) : (
                                 filtered.map((e, i) => {
-                                    const status = (e.status || "pending") as Status;
+                                    const status = normalizeStatus(e.status);
                                     const badge = STATUS_BADGE[status];
                                     return (
                                         <tr key={e.id} className="hover:bg-slate-50 transition-colors">

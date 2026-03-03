@@ -11,6 +11,13 @@ import { logActivity } from "@/lib/activityLog";
 
 type Status = "pending" | "contacted" | "rejected";
 
+// Maps any unknown/legacy DB status (e.g. "new") to a known Status
+function normalizeStatus(raw: string | null | undefined): Status {
+    if (raw === "contacted") return "contacted";
+    if (raw === "rejected") return "rejected";
+    return "pending";
+}
+
 interface Enquiry {
     id: string;
     full_name: string;
@@ -149,7 +156,7 @@ export default function EnquiryDetailPage() {
         );
     }
 
-    const status = (enquiry.status || "pending") as Status;
+    const status = normalizeStatus(enquiry.status);
     const badge = STATUS_CONFIG[status];
 
     return (
