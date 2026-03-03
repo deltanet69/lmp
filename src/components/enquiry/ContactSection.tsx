@@ -174,6 +174,28 @@ export default function ContactSection() {
                 detail: form.project_type,
             });
 
+            // Send email notifications — await so we can log the result for debugging
+            try {
+                const emailRes = await fetch("/api/send-enquiry-email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        full_name: form.full_name.trim(),
+                        email_address: form.email_address.trim(),
+                        phone_number: form.phone_number.trim() || null,
+                        project_type: form.project_type,
+                        message: form.message.trim() || null,
+                    }),
+                });
+                const emailJson = await emailRes.json();
+                console.log("[ContactSection] Email API response:", emailJson);
+                if (!emailRes.ok || emailJson.errors) {
+                    console.warn("[ContactSection] Email issue detected:", emailJson.errors ?? emailJson.error);
+                }
+            } catch (emailErr) {
+                console.warn("[ContactSection] Email API call failed (non-critical):", emailErr);
+            }
+
             setModal("success");
             setForm(EMPTY_FORM);
         } catch {
