@@ -11,6 +11,7 @@ type Props = { params: Promise<{ id: string }> };
 interface Project {
     id: string;
     title: string;
+    slug: string;
     category: string;
     client: string | null;
     years: string | null;
@@ -34,9 +35,14 @@ function getExcerpt(html: string | null, words = 10): string {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { id } = await params;
+    // params.id actually contains the slug value from the URL
+    const { id: slug } = await params;
     const supabase = await createClient();
-    const { data } = await supabase.from("portfolio").select("title, description").eq("id", id).single();
+    const { data } = await supabase
+        .from("portfolio")
+        .select("title, description")
+        .eq("slug", slug)
+        .single();
     if (!data) return { title: "Project Not Found" };
     return {
         title: `${data.title} | Langit Media Pro`,
@@ -45,25 +51,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjectDetailsPage({ params }: Props) {
-    const { id } = await params;
+    // params.id contains the slug string from the URL segment
+    const { id: slug } = await params;
     const supabase = await createClient();
 
     const { data: project } = await supabase
         .from("portfolio")
         .select("*")
-        .eq("id", id)
+        .eq("slug", slug)
         .single<Project>();
 
     if (!project) notFound();
 
-    // Prev / Next
+    // Prev / Next – navigate by slug
     const { data: allProjects } = await supabase
         .from("portfolio")
-        .select("id, title")
+        .select("id, title, slug")
         .order("created_at", { ascending: false });
 
     const projectList = allProjects || [];
-    const currentIndex = projectList.findIndex((p) => p.id === id);
+    const currentIndex = projectList.findIndex((p) => p.slug === slug);
     const prevProject = currentIndex > 0 ? projectList[currentIndex - 1] : null;
     const nextProject = currentIndex < projectList.length - 1 ? projectList[currentIndex + 1] : null;
 
@@ -190,7 +197,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
                     {/* Prev / Next */}
                     <div className="mt-20 pt-10 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
                         {prevProject ? (
-                            <Link href={`/portfolio/${prevProject.id}`} className="group flex items-center gap-4 w-full sm:w-auto">
+                            <Link href={`/portfolio/${prevProject.slug || prevProject.id}`} className="group flex items-center gap-4 w-full sm:w-auto">
                                 <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors shrink-0">
                                     <img src="/icun.png" alt="Prev" className="w-4 h-4 object-contain brightness-0 invert rotate-180" />
                                 </div>
@@ -204,7 +211,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
                         <div className="hidden sm:block w-px h-16 bg-white/10 shrink-0" />
 
                         {nextProject ? (
-                            <Link href={`/portfolio/${nextProject.id}`} className="group flex items-center justify-end gap-4 w-full sm:w-auto text-right">
+                            <Link href={`/portfolio/${nextProject.slug || nextProject.id}`} className="group flex items-center justify-end gap-4 w-full sm:w-auto text-right">
                                 <div className="text-right">
                                     <p className="text-white/50 text-xs uppercase tracking-widest mb-1">Next Project</p>
                                     <p className="text-white font-bold group-hover:text-primary transition-colors max-w-[200px] truncate">{nextProject.title}</p>
