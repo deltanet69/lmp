@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowLeft, Upload, X, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { logActivity } from "@/lib/activityLog";
+import { slugify } from "@/lib/slugify";
 import dynamic from "next/dynamic";
 
 const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), {
@@ -110,7 +111,9 @@ export default function EditPortfolioPage() {
             }
 
             const { error: updateError } = await supabase.from("portfolio").update({
-                title, description, category,
+                title,
+                slug: slugify(title),
+                description, category,
                 project_quality: projectQuality || null,
                 client,
                 project_link: projectLink, years,
@@ -230,10 +233,13 @@ export default function EditPortfolioPage() {
                             <option value="">Select category...</option>
                             {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
                         </select>
-                    </div>
 
-                    {/* Project Quality */}
-                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
+                        {/* {Client} */}
+                        <label className="block text-sm font-semibold text-slate-700">Client</label>
+                        <input type="text" value={client} onChange={(e) => setClient(e.target.value)} placeholder="e.g. PT. Jacos Utama"
+                            className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50" />
+
+                        {/* Project Quality */}
                         <label className="block text-sm font-semibold text-slate-700">Project Quality</label>
                         <div className="space-y-2">
                             {PROJECT_QUALITIES.map((q) => (
@@ -242,8 +248,8 @@ export default function EditPortfolioPage() {
                                     type="button"
                                     onClick={() => setProjectQuality(projectQuality === q.value ? "" : q.value)}
                                     className={`w-full text-left px-3 py-2.5 rounded-lg border transition-all ${projectQuality === q.value
-                                            ? q.color + " font-semibold"
-                                            : "border-slate-200 text-slate-600 hover:bg-slate-50"
+                                        ? q.color + " font-semibold"
+                                        : "border-slate-200 text-slate-600 hover:bg-slate-50"
                                         }`}
                                 >
                                     <p className="text-sm font-medium">{q.label}</p>
@@ -257,22 +263,23 @@ export default function EditPortfolioPage() {
                                 Hapus pilihan
                             </button>
                         )}
-                    </div>
-                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
-                        <label className="block text-sm font-semibold text-slate-700">Client</label>
-                        <input type="text" value={client} onChange={(e) => setClient(e.target.value)} placeholder="e.g. PT. Jacos Utama"
-                            className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50" />
-                    </div>
-                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
+
+
+
+                        {/* {Year} */}
                         <label className="block text-sm font-semibold text-slate-700">Year</label>
                         <input type="text" value={years} onChange={(e) => setYears(e.target.value)} placeholder="e.g. 2024"
                             className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50" />
-                    </div>
-                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
+
+                        {/* {Project Link} */}
                         <label className="block text-sm font-semibold text-slate-700">Project Link</label>
                         <input type="url" value={projectLink} onChange={(e) => setProjectLink(e.target.value)} placeholder="https://..."
                             className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50" />
+
                     </div>
+
+
+
 
                     {/* Featured Project toggle */}
                     <div className="bg-white border border-slate-200 rounded-xl p-5">

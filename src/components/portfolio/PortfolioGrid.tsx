@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase/client";
 interface Project {
     id: string;
     title: string;
+    slug: string;
     category: string;
     client: string | null;
     years: string | null;
@@ -93,7 +94,7 @@ export default function PortfolioGrid() {
                                     whileHover={{ y: -6 }}
                                 >
                                     <Link
-                                        href={`/portfolio/${project.id}`}
+                                        href={`/portfolio/${project.slug || project.id}`}
                                         className="group flex flex-col h-[380px] rounded-[2rem] overflow-hidden bg-[#1D1B2E] border border-white/5 hover:border-primary/30 hover:shadow-[0_0_40px_rgba(226,14,194,0.15)] transition-all duration-500"
                                     >
                                         {/* Thumbnail */}

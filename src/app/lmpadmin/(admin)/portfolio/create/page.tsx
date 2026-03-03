@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowLeft, Upload, X, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { logActivity } from "@/lib/activityLog";
+import { slugify } from "@/lib/slugify";
 import dynamic from "next/dynamic";
 
 const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), {
@@ -97,6 +98,7 @@ export default function CreatePortfolioPage() {
 
             const { error: insertError } = await supabase.from("portfolio").insert({
                 title,
+                slug: slugify(title),
                 description,
                 category,
                 project_quality: projectQuality || null,
@@ -271,11 +273,18 @@ export default function CreatePortfolioPage() {
                                 <option key={c} value={c}>{c}</option>
                             ))}
                         </select>
-                    </div>
+                        {/* Client */}
+                        <label className="block text-sm font-semibold text-slate-700 mt-5">Client</label>
+                        <input
+                            type="text"
+                            value={client}
+                            onChange={(e) => setClient(e.target.value)}
+                            placeholder="e.g. PT. Jacos Utama"
+                            className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50 focus:border-[#80FF00] transition-all"
+                        />
 
-                    {/* Project Quality */}
-                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
-                        <label className="block text-sm font-semibold text-slate-700">Project Quality</label>
+                        {/* Project Quality */}
+                        <label className="block text-sm font-semibold text-slate-700 mt-5">Project Quality</label>
                         <div className="space-y-2">
                             {PROJECT_QUALITIES.map((q) => (
                                 <button
@@ -283,8 +292,8 @@ export default function CreatePortfolioPage() {
                                     type="button"
                                     onClick={() => setProjectQuality(projectQuality === q.value ? "" : q.value)}
                                     className={`w-full text-left px-3 py-2.5 rounded-lg border transition-all ${projectQuality === q.value
-                                            ? q.color + " font-semibold"
-                                            : "border-slate-200 text-slate-600 hover:bg-slate-50"
+                                        ? q.color + " font-semibold"
+                                        : "border-slate-200 text-slate-600 hover:bg-slate-50"
                                         }`}
                                 >
                                     <p className="text-sm font-medium">{q.label}</p>
@@ -298,23 +307,9 @@ export default function CreatePortfolioPage() {
                                 Hapus pilihan
                             </button>
                         )}
-                    </div>
 
-                    {/* Client */}
-                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
-                        <label className="block text-sm font-semibold text-slate-700">Client</label>
-                        <input
-                            type="text"
-                            value={client}
-                            onChange={(e) => setClient(e.target.value)}
-                            placeholder="e.g. PT. Jacos Utama"
-                            className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50 focus:border-[#80FF00] transition-all"
-                        />
-                    </div>
-
-                    {/* Year */}
-                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
-                        <label className="block text-sm font-semibold text-slate-700">Year</label>
+                        {/* Year */}
+                        <label className="block text-sm font-semibold text-slate-700 mt-5">Year</label>
                         <input
                             type="text"
                             value={years}
@@ -322,11 +317,9 @@ export default function CreatePortfolioPage() {
                             placeholder="e.g. 2024"
                             className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50 focus:border-[#80FF00] transition-all"
                         />
-                    </div>
 
-                    {/* Project Link */}
-                    <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-3">
-                        <label className="block text-sm font-semibold text-slate-700">Project Link</label>
+                        {/* Project Link */}
+                        <label className="block text-sm font-semibold text-slate-700 mt-5">Project Link</label>
                         <input
                             type="url"
                             value={projectLink}
@@ -335,6 +328,12 @@ export default function CreatePortfolioPage() {
                             className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#80FF00]/50 focus:border-[#80FF00] transition-all"
                         />
                     </div>
+
+
+
+
+
+
 
                     {/* Featured Project */}
                     <div className="bg-white border border-slate-200 rounded-xl p-5">
