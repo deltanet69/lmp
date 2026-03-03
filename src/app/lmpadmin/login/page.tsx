@@ -40,7 +40,7 @@ export default function LoginPage() {
         <div className="min-h-screen flex items-center justify-center bg-[#19172A] p-4 text-white">
             <div className="max-w-md w-full bg-slate-900 rounded-xl shadow-lg p-8 border border-slate-800">
                 <div className="flex flex-col items-center mb-8">
-                    <Image src="/lmp.png" alt="LMP Logo" width={80} height={80} className="mb-4" />
+                    <Image src="/lmp.png" alt="LMP Logo" width={170} height={140} className="mb-14" />
                     <h2 className="text-2xl font-bold font-patua-one">Admin Login</h2>
                     <p className="text-slate-400 text-sm mt-2">Sign in to access the dashboard</p>
                 </div>
