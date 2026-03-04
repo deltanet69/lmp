@@ -1,64 +1,69 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import { useEffect, useRef } from "react";
+import "leaflet/dist/leaflet.css";
 
-const icon = L.icon({
-    iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-    iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-});
+const POSITION: [number, number] = [-6.1806227, 106.9936612];
 
 export default function Map() {
-    const position: [number, number] = [-6.1806227, 106.9936612];
+    const containerRef = useRef<HTMLDivElement>(null);
+    const mapRef = useRef<import("leaflet").Map | null>(null);
 
-    // Generate a truly unique ID for each mount to prevent ID collisions
-    // especially during HMR or fast navigation.
-    const [mapId] = useState(() => `leaflet-map-${Math.random().toString(36).substring(2, 9)}`);
-
-    // Clean up the Leaflet container reference on unmount more thoroughly
     useEffect(() => {
-        return () => {
-            const container = document.getElementById(mapId);
-            if (container) {
-                // Clear the internal Leaflet ID associated with this DOM element
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (container as any)._leaflet_id = null;
+        // Guard: must run client-side only, and only once
+        if (!containerRef.current || mapRef.current) return;
 
-                // Also check if any parent has it (sometimes happens with react-leaflet)
-                if (container.parentElement) {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    (container.parentElement as any)._leaflet_id = null;
-                }
+        let map: import("leaflet").Map;
+
+        (async () => {
+            const L = (await import("leaflet")).default;
+
+            // Safety: if Leaflet already initialised this container, wipe it first
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            if ((containerRef.current as any)._leaflet_id) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (containerRef.current as any)._leaflet_id = null;
+            }
+
+            // Fix default marker icon paths for Next.js / webpack
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            delete (L.Icon.Default.prototype as any)._getIconUrl;
+            L.Icon.Default.mergeOptions({
+                iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+                iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+                shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+            });
+
+            map = L.map(containerRef.current!, {
+                center: POSITION,
+                zoom: 15,
+                scrollWheelZoom: true,
+            });
+
+            mapRef.current = map;
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(map);
+
+            L.marker(POSITION)
+                .addTo(map)
+                .bindPopup("Langit Media Pro<br/>Bekasi, Indonesia");
+        })();
+
+        // Cleanup: properly destroy map on unmount (React StrictMode / HMR safe)
+        return () => {
+            if (mapRef.current) {
+                mapRef.current.remove();
+                mapRef.current = null;
             }
         };
-    }, [mapId]);
+    }, []); // empty deps — run once on mount
 
     return (
-        <div className="w-full h-[500px] z-0 relative isolate">
-            <MapContainer
-                key={mapId}
-                id={mapId}
-                center={position}
-                zoom={15}
-                scrollWheelZoom={true}
-                style={{ height: '100%', width: '100%', zIndex: 0 }}
-            >
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={position} icon={icon}>
-                    <Popup>
-                        Langit Media Pro <br /> Bekasi, Indonesia
-                    </Popup>
-                </Marker>
-            </MapContainer>
-        </div>
+        <div
+            ref={containerRef}
+            className="w-full h-[500px] z-0 relative isolate"
+            style={{ zIndex: 0 }}
+        />
     );
 }
