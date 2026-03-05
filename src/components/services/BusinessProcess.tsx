@@ -21,7 +21,7 @@ const processes = [
     {
         icon: "/proses/3.png",
         title: "Concept",
-        description: "Tim kreatif kami mengembangkan konsep menjadi storyline, naskah, dan storyboard yang detail.",
+        description: "Kami mengembangkan konsep menjadi storyline, naskah, dan storyboard yang detail.",
         point1: "▪ Riset",
         point2: "▪ Review",
         point3: "▪ Writing"

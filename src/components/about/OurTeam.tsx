@@ -11,7 +11,7 @@ interface TeamMember {
     image: string | null;
 }
 
-const INITIAL_SHOW = 8;
+const INITIAL_SHOW = 12;
 
 export default function OurTeam() {
     const supabase = createClient();
@@ -55,8 +55,8 @@ export default function OurTeam() {
 
                 {/* Skeleton while loading */}
                 {loading && (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                        {[...Array(8)].map((_, i) => (
+                    <div className="grid grid-cols-2 md:grid-cols-6 gap-6 md:gap-5">
+                        {[...Array(12)].map((_, i) => (
                             <div
                                 key={i}
                                 className="rounded-[2rem] bg-white/5 animate-pulse"
@@ -69,7 +69,7 @@ export default function OurTeam() {
                 {/* Grid — CSS-driven fade in, not per-card JS animation */}
                 {!loading && (
                     <>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                        <div className="grid grid-cols-2 md:grid-cols-6 gap- md:gap-5">
                             {displayed.map((member, index) => (
                                 <div
                                     key={member.id}
@@ -102,8 +102,8 @@ export default function OurTeam() {
                                     </div>
 
                                     <div className="text-center pb-2">
-                                        <h3 className="text-sm md:text-base font-bold text-white leading-tight">{member.full_name}</h3>
-                                        <p className="text-primary font-bold text-[10px] md:text-xs tracking-wider uppercase mt-1">
+                                        <h3 className="text-lg md:text-lg font-bold text-white leading-tight">{member.full_name}</h3>
+                                        <p className="text-primary font-medium text-[14px] md:text-md tracking-wider uppercase mt-1">
                                             {member.jabatan}
                                         </p>
                                     </div>

@@ -17,17 +17,34 @@ const patuaOne = Patua_One({
 
 export async function generateMetadata(): Promise<Metadata> {
   const supabase = await createClient();
-  const { data } = await supabase.from("web_setting").select("*").maybeSingle();
+  const { data } = await supabase.from("web_setting").select("*").limit(1).maybeSingle();
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://langitmediapro.com";
+  const title = data?.meta_title || "Langit Media Pro";
+  const description = data?.meta_description || "Your Trusted Production Partner";
 
   return {
-    title: data?.meta_title || "Langit Media Pro",
-    description: data?.meta_description || "Your Trusted Production Partner",
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
     keywords: data?.meta_keywords || undefined,
-    openGraph: data?.og_image
-      ? {
-        images: [{ url: data.og_image }],
-      }
-      : undefined,
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName: "Langit Media Pro",
+      type: "website",
+      locale: "id_ID",
+      ...(data?.og_image
+        ? { images: [{ url: data.og_image, width: 1200, height: 630, alt: title }] }
+        : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(data?.og_image ? { images: [data.og_image] } : {}),
+    },
     other: {
       ...(data?.google_search_console
         ? { "google-site-verification": data.google_search_console }
@@ -43,12 +60,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const supabase = await createClient();
-  const { data } = await supabase.from("web_setting").select("google_analytics_id").maybeSingle();
+  const { data } = await supabase.from("web_setting").select("google_analytics_id").limit(1).maybeSingle();
   const gaId = data?.google_analytics_id;
 
   return (
     <html lang="en" className="scroll-smooth">
-      <head>
+      <body
+        className={`${openSans.variable} ${patuaOne.variable} antialiased font-sans flex flex-col min-h-screen bg-[#19172A]`}
+      >
         {gaId && (
           <>
             <Script
@@ -65,10 +84,6 @@ export default async function RootLayout({
             </Script>
           </>
         )}
-      </head>
-      <body
-        className={`${openSans.variable} ${patuaOne.variable} antialiased font-sans flex flex-col min-h-screen bg-[#19172A]`}
-      >
         {children}
       </body>
     </html>

@@ -58,7 +58,7 @@ export default function LatestProject() {
                 <p className="text-white/70 max-w-2xl mx-auto text-lg mb-12 font-medium">
                     Kami menyediakan solusi komunikasi visual dan digital yang dirancang khusus untuk kebutuhan korporasi anda.
                 </p>
-                <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                {/* <div className="flex flex-wrap justify-center gap-3 md:gap-4">
                     {CATEGORIES.map((cat) => (
                         <button
                             key={cat}
@@ -71,7 +71,7 @@ export default function LatestProject() {
                             {cat}
                         </button>
                     ))}
-                </div>
+                </div> */}
             </motion.div>
 
             {loading ? (

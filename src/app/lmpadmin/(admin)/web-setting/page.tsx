@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
     Save, MapPin, Phone, Mail, Instagram, Youtube, Globe,
     Search, BarChart2, Link2, Facebook, Music2
@@ -43,20 +43,37 @@ const EMPTY: WebSetting = {
 };
 
 export default function WebSettingPage() {
-    const supabase = createClient();
+    // Memoize the client so it's stable across renders
+    const supabase = useMemo(() => createClient(), []);
     const [saving, setSaving] = useState(false);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<WebSetting>(EMPTY);
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        const fetch = async () => {
-            const { data: row } = await supabase.from("web_setting").select("*").maybeSingle();
+        const loadSettings = async () => {
+            const { data: row, error } = await supabase
+                .from("web_setting")
+                .select("*")
+                .limit(1)
+                .maybeSingle();
+            if (error) {
+                // Log all properties explicitly — Supabase PostgrestError may not serialize with console.error
+                console.error(
+                    "[web_setting] load error\n",
+                    "code:", error.code, "\n",
+                    "message:", error.message, "\n",
+                    "details:", error.details, "\n",
+                    "hint:", error.hint, "\n",
+                    "full:", JSON.stringify(error)
+                );
+            }
+            // Still populate whatever was returned (row may be null on empty table — that's OK)
             if (row) setData(row);
             setLoading(false);
         };
-        fetch();
-    }, []);
+        loadSettings();
+    }, [supabase]);
 
     const set = (key: keyof WebSetting) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setData((prev) => ({ ...prev, [key]: e.target.value }));
@@ -65,18 +82,35 @@ export default function WebSettingPage() {
     const handleSave = async () => {
         setSaving(true);
         setSuccess(false);
-        let error;
-        if (data.id) {
-            const { error: e } = await supabase.from("web_setting").update(data).eq("id", data.id);
-            error = e;
-        } else {
-            const { data: inserted, error: e } = await supabase.from("web_setting").insert([data]).select().single();
-            if (inserted) setData(inserted);
-            error = e;
-        }
+
+        // Strip 'id' from the payload — Supabase rejects updating the primary key
+        const { id, ...payload } = data;
+
+        // upsert: if a row with this id exists, update it; otherwise insert a new row.
+        // Pass ignoreDuplicates: false so it always updates on conflict.
+        const { data: saved, error } = await supabase
+            .from("web_setting")
+            .upsert(id ? { id, ...payload } : payload, { onConflict: "id" })
+            .select()
+            .single();
+
         setSaving(false);
-        if (!error) setSuccess(true);
-        else alert("Error: " + error.message);
+
+        if (error) {
+            console.error("[web_setting] save error:", error);
+            alert("Gagal menyimpan: " + error.message + "\n\nCode: " + error.code);
+            return;
+        }
+
+        if (saved) setData(saved);
+        setSuccess(true);
+
+        // Bust Next.js metadata cache so SEO changes appear immediately on the site
+        try {
+            await window.fetch("/api/revalidate", { method: "POST" });
+        } catch (err) {
+            console.warn("[web_setting] revalidation failed:", err);
+        }
     };
 
     if (loading) return <div className="text-slate-400 p-6">Loading settings...</div>;

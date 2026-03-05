@@ -19,7 +19,7 @@ interface Project {
 }
 
 const CATEGORIES = ["All Projects", "Company Profile", "Animation Video", "Website Development"];
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 9;
 
 export default function PortfolioGrid() {
     const supabase = createClient();
