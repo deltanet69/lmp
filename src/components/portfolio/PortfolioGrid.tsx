@@ -114,11 +114,11 @@ export default function PortfolioGrid() {
                                                 <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold rounded-full uppercase tracking-widest">
                                                     {project.category}
                                                 </span>
-                                                {project.years && (
+                                                {/* {project.years && (
                                                     <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold rounded-full uppercase tracking-widest">
                                                         {project.years}
                                                     </span>
-                                                )}
+                                                )} */}
                                             </div>
                                         </div>
                                         {/* Title */}

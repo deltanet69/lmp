@@ -20,13 +20,20 @@ export default function TeamSupportPage() {
     const [deleting, setDeleting] = useState<string | null>(null);
     const supabase = createClient();
 
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+
     const fetchMembers = async () => {
         setLoading(true);
         const { data, error } = await supabase
             .from("team_lmp")
             .select("id, full_name, jabatan, image, created_at")
             .order("created_at", { ascending: false });
-        if (!error && data) setMembers(data);
+        if (!error && data) {
+            setMembers(data);
+            setCurrentPage(1);
+        }
         setLoading(false);
     };
 
@@ -39,6 +46,10 @@ export default function TeamSupportPage() {
         await fetchMembers();
         setDeleting(null);
     };
+
+    const totalPages = Math.ceil(members.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedMembers = members.slice(startIndex, startIndex + itemsPerPage);
 
     return (
         <div className="space-y-6">
@@ -56,7 +67,7 @@ export default function TeamSupportPage() {
                 </Link>
             </div>
 
-            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead>
@@ -68,7 +79,7 @@ export default function TeamSupportPage() {
                                 <th className="text-center px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100">
+                        <tbody className="divide-y divide-slate-100 min-h-[400px]">
                             {loading ? (
                                 <tr>
                                     <td colSpan={5} className="py-16 text-center text-slate-400">Loading team members...</td>
@@ -78,18 +89,19 @@ export default function TeamSupportPage() {
                                     <td colSpan={5} className="py-16 text-center text-slate-400">No team members yet. Click "Add Member" to create one.</td>
                                 </tr>
                             ) : (
-                                members.map((m: TeamMember, i: number) => {
+                                paginatedMembers.map((m: TeamMember, i: number) => {
+                                    const actualIndex = startIndex + i + 1;
                                     // Optimization: Manual image resizing for Supabase to reduce payload since Next.js optimization is disabled
                                     const imageUrl = m.image?.includes('supabase.co')
                                         ? `${m.image}?width=80&height=80&resize=cover`
                                         : m.image;
 
                                     return (
-                                        <tr key={m.id} className="hover:bg-slate-50/80 group">
-                                            <td className="px-5 py-3 text-slate-400 font-mono text-xs">{i + 1}</td>
+                                        <tr key={m.id} className="border-b border-slate-50/50">
+                                            <td className="px-5 py-3 text-slate-400 font-mono text-xs">{actualIndex}</td>
                                             <td className="px-5 py-3">
                                                 {imageUrl ? (
-                                                    <div className="relative w-10 h-10 rounded-full overflow-hidden border border-slate-200 bg-slate-100">
+                                                    <div className="relative w-10 h-10 rounded-full overflow-hidden border border-slate-200 bg-slate-100 shadow-sm">
                                                         <img
                                                             src={imageUrl}
                                                             alt={m.full_name}
@@ -106,7 +118,7 @@ export default function TeamSupportPage() {
                                             <td className="px-5 py-3 font-semibold text-slate-700">
                                                 <Link
                                                     href={`/lmpadmin/team-support/${m.id}/edit`}
-                                                    className="hover:text-[#19172A]"
+                                                    className="hover:text-blue-600 transition-colors"
                                                 >
                                                     {m.full_name}
                                                 </Link>
@@ -117,10 +129,10 @@ export default function TeamSupportPage() {
                                                 </span>
                                             </td>
                                             <td className="px-5 py-3">
-                                                <div className="flex items-center justify-center gap-1.5 opacity-60 group-hover:opacity-100">
+                                                <div className="flex items-center justify-center gap-2">
                                                     <Link
                                                         href={`/lmpadmin/team-support/${m.id}/edit`}
-                                                        className="p-1.5 rounded-md text-slate-400 hover:bg-white hover:text-blue-500 hover:shadow-sm border border-transparent hover:border-slate-100"
+                                                        className="p-1.5 rounded-md text-blue-500 hover:bg-blue-50 hover:text-blue-700 transition-colors border border-transparent hover:border-blue-100 shadow-sm"
                                                         title="Edit"
                                                     >
                                                         <Pencil className="w-4 h-4" />
@@ -128,7 +140,7 @@ export default function TeamSupportPage() {
                                                     <button
                                                         onClick={() => handleDelete(m.id)}
                                                         disabled={deleting === m.id}
-                                                        className="p-1.5 rounded-md text-slate-400 hover:bg-white hover:text-red-500 hover:shadow-sm border border-transparent hover:border-slate-100 disabled:opacity-30"
+                                                        className="p-1.5 rounded-md text-red-400 hover:bg-red-50 hover:text-red-600 transition-colors disabled:opacity-30 border border-transparent hover:border-red-100 shadow-sm"
                                                         title="Delete"
                                                     >
                                                         <Trash2 className="w-4 h-4" />
@@ -142,6 +154,34 @@ export default function TeamSupportPage() {
                         </tbody>
                     </table>
                 </div>
+
+                {/* Pagination Controls */}
+                {!loading && totalPages > 1 && (
+                    <div className="border-t border-slate-200 bg-slate-50 px-5 py-3 flex items-center justify-between mt-auto">
+                        <div className="text-xs text-slate-500">
+                            Showing <span className="font-semibold text-slate-700">{startIndex + 1}</span> to <span className="font-semibold text-slate-700">{Math.min(startIndex + itemsPerPage, members.length)}</span> of <span className="font-semibold text-slate-700">{members.length}</span> members
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <button
+                                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                                disabled={currentPage === 1}
+                                className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            >
+                                Previous
+                            </button>
+                            <div className="px-4 text-xs font-semibold text-slate-600">
+                                Page {currentPage} of {totalPages}
+                            </div>
+                            <button
+                                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                                disabled={currentPage === totalPages}
+                                className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

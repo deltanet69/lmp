@@ -69,46 +69,52 @@ export default function OurTeam() {
                 {/* Grid — CSS-driven fade in, not per-card JS animation */}
                 {!loading && (
                     <>
-                        <div className="grid grid-cols-2 md:grid-cols-6 gap- md:gap-5">
-                            {displayed.map((member, index) => (
-                                <div
-                                    key={member.id}
-                                    className="team-card relative bg-white/5 border border-white/10 p-2 rounded-[2rem] overflow-hidden group
-                                               transition-all duration-300 hover:bg-white/10 hover:border-white/20
-                                               hover:shadow-[0_0_30px_rgba(226,14,194,0.15)] hover:-translate-y-2"
-                                    style={{
-                                        animation: `fadeInUp 0.4s ease both`,
-                                        animationDelay: `${Math.min(index, 3) * 0.07}s`,
-                                    }}
-                                >
-                                    {/* Photo */}
-                                    <div className="w-full bg-black/20 rounded-[1.5rem] mb-4 overflow-hidden relative border-2 border-transparent group-hover:border-primary/50 transition-colors duration-300"
-                                        style={{ aspectRatio: "4/4" }}
-                                    >
-                                        {member.image ? (
-                                            <img
-                                                src={member.image}
-                                                alt={member.full_name}
-                                                loading={index < 4 ? "eager" : "lazy"}
-                                                decoding="async"
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center text-4xl font-black text-white/20">
-                                                {member.full_name[0]}
-                                            </div>
-                                        )}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    </div>
+                        <div className="grid grid-cols-2 md:grid-cols-6 gap-6 md:gap-5">
+                            {displayed.map((member, index) => {
+                                const imageUrl = member.image?.includes('supabase.co')
+                                    ? `${member.image}?width=300&height=400&resize=cover`
+                                    : member.image;
 
-                                    <div className="text-center pb-2">
-                                        <h3 className="text-lg md:text-lg font-bold text-white leading-tight">{member.full_name}</h3>
-                                        <p className="text-primary font-medium text-[14px] md:text-md tracking-wider uppercase mt-1">
-                                            {member.jabatan}
-                                        </p>
+                                return (
+                                    <div
+                                        key={member.id}
+                                        className="team-card relative bg-white/5 border border-white/10 p-2 rounded-[2rem] overflow-hidden group
+                                                   transition-all duration-300 hover:bg-white/10 hover:border-white/20
+                                                   hover:shadow-[0_0_30px_rgba(226,14,194,0.15)] hover:-translate-y-2"
+                                        style={{
+                                            animation: `fadeInUp 0.4s ease both`,
+                                            animationDelay: `${Math.min(index, 3) * 0.07}s`,
+                                        }}
+                                    >
+                                        {/* Photo */}
+                                        <div className="w-full bg-black/20 rounded-[1.5rem] mb-4 overflow-hidden relative border-2 border-transparent group-hover:border-primary/50 transition-colors duration-300"
+                                            style={{ aspectRatio: "4/4" }}
+                                        >
+                                            {imageUrl ? (
+                                                <img
+                                                    src={imageUrl}
+                                                    alt={member.full_name}
+                                                    loading={index < 4 ? "eager" : "lazy"}
+                                                    decoding="async"
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center text-4xl font-black text-white/20">
+                                                    {member.full_name[0]}
+                                                </div>
+                                            )}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        </div>
+
+                                        <div className="text-center pb-2">
+                                            <h3 className="text-lg md:text-lg font-bold text-white leading-tight">{member.full_name}</h3>
+                                            <p className="text-primary font-medium text-[14px] md:text-md tracking-wider uppercase mt-1">
+                                                {member.jabatan}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
 
                         {/* Show More Button */}
