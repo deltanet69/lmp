@@ -27,9 +27,14 @@ jobs:
       - name: 🛠️ Build Next.js app
         run: npm run build
         env:
-          # ⭐ Tambahkan env variables yang diperlukan saat build
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
+      - name: 🧹 Clean build artifacts
+        run: |
+          find out -name "*.txt" -type f -delete
+          find out -name "__next*" -type f -delete
+          find out -name "*.map" -type f -delete
 
       - name: 📤 Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -37,12 +42,10 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: out/ # ⭐ folder hasil build Next.js
-          server-dir: ${{ secrets.FTP_TARGET_DIR || 'public_html/' }} # ⭐ Gunakan public_html jika target dir kosong
-          state-name: .ftp-deploy-sync-state.json # ⭐ Simpan state agar upload berikutnya lebih cepat
+          local-dir: out/
+          server-dir: public_html/
+          state-name: .ftp-deploy-sync-state.json
           exclude: |
-            **/__next*
-            **/*.txt
             **/.git*
             **/.git*/**
             **/node_modules/**
