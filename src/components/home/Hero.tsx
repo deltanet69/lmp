@@ -5,6 +5,8 @@ import { MagicCard } from '@/components/ui/magic-card';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
+import { IPhoneMockup } from 'react-device-mockup';
+
 const images = [
     '/hero/g5.png',
 ];
@@ -98,41 +100,50 @@ export default function Hero() {
                     </div>
 
                     {/* Right Side */}
-                    <div className="relative flex justify-center lg:justify-end">
+                    <div className="relative flex justify-center lg:justify-end pt-20">
                         <motion.div
-                            whileHover={{ scale: 1.02 }}
+                            whileHover={{ scale: 1.03 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                            className="relative w-full max-w-sm md:max-w-sm lg:max-w-[480px] group"
+                            className="relative w-full flex justify-center lg:justify-end"
                         >
-                            <MagicCard
-                                className="relative w-full rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/20 bg-white/5 border border-white/10 cursor-pointer p-4"
-                                gradientColor="rgba(226,14,194,0.15)"
+                            <motion.div
+                                animate={{
+                                    y: [0, -20, 0],
+                                }}
+                                transition={{
+                                    duration: 8,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                                className="relative group"
                             >
-                                <div className="relative rounded-[2rem] overflow-hidden">
-                                    <motion.div
-                                        animate={{
-                                            y: [0, -20, 0],
-                                        }}
-                                        transition={{
-                                            duration: 6,
-                                            repeat: Infinity,
-                                            ease: "easeInOut"
-                                        }}
-                                    >
-                                        <img src="/heroimg.png" alt="Hero" className="w-full h-auto object-cover relative z-10" />
+                                <IPhoneMockup
+                                    screenWidth={300}
+                                    screenType="island"
+                                    frameColor="#161616"
+                                    statusbarColor="#303030"
+                                >
+                                    <div className="w-full h-full bg-black shadow-xl">
+                                        <video
+                                            src="/herovideo.mp4"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                </IPhoneMockup>
 
-                                        {/* Watermark Overlay */}
-                                        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-opacity duration-300">
-                                            <img
-                                                src="/wm2.png"
-                                                alt="Watermark"
-                                                className="w-full h-auto object-contain"
-                                                onError={(e) => console.log('Image failed to load:', e)}
-                                            />
-                                        </div>
-                                    </motion.div>
+                                {/* Watermark Overlay - Optional, removed if it blocks the video screen or adjusted */}
+                                <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <img
+                                        src="/wm2.png"
+                                        alt="Watermark"
+                                        className="w-full h-auto object-contain scale-75"
+                                    />
                                 </div>
-                            </MagicCard>
+                            </motion.div>
                         </motion.div>
                     </div>
 
