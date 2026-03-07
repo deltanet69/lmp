@@ -16,7 +16,7 @@ export default function PageHeader({ breadcrumb, pillText, title, highlightWord 
         <section className="relative w-full min-h-[350px] md:min-h-[450px] flex items-center justify-center pt-32 pb-10 overflow-hidden bg-[#0C101A]">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
-                <img src="/page.png" alt="Header Background" className="w-(full) h-full object-cover opacity-40 grayscale-[50%]" />
+                <img src="/page.png" alt="Header Background" className="w-full h-full object-cover opacity-40 grayscale-[50%]" />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0C101A] via-[#0C101A]/60 to-transparent"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#19172A] to-transparent opacity-80"></div>
             </div>
