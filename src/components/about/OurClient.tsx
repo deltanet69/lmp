@@ -93,18 +93,18 @@ export default function OurClient() {
 
                 {/* Trusted Brands Container */}
                 <motion.div
-                    className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 gap-4 md:gap-2 mt-12 items-center justify-items-center"
+                    className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 mt-12 items-center justify-items-center"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
                     {clients.map((client, i) => (
-                        <div key={i} className="flex justify-center items-center w-full h-20 bg-white/5 rounded-xl border border-white/5 hover:bg-white/80 hover:border-white/20 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm">
+                        <div key={i} className="flex justify-center items-center w-full h-16 md:h-20 bg-white/5 rounded-xl border border-white/5 hover:bg-white/80 hover:border-white/20 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-sm px-3">
                             <img
                                 src={client.src}
                                 alt={client.alt}
-                                className="max-h-12 max-w-[120px] object-contain transition-all duration-300 hover:scale-110"
+                                className="max-h-8 md:max-h-12 w-full object-contain transition-all duration-300 hover:scale-110"
                             />
                         </div>
                     ))}
