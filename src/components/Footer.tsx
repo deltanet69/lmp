@@ -77,7 +77,7 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center gap-6 group">
                                 <img src="/gtc2.png" alt="Email" className="w-7 h-7 object-contain group-hover:scale-110 transition-transform" />
-                                <Link href="mailto:contact@langitmediapro.com" className="text-white/60 group-hover:text-primary transition-colors text-lg font-medium tracking-wide">contact@langitmediapro.com</Link>
+                                <Link href="mailto:info@langitmediapro.id" className="text-white/60 group-hover:text-primary transition-colors text-lg font-medium tracking-wide">info@langitmediapro.id</Link>
                             </li>
                             <li className="flex items-center gap-6 group">
                                 <img src="/gtc1.png" alt="Location" className="w-7 h-7 object-contain group-hover:scale-110 transition-transform" />

@@ -119,11 +119,11 @@ export default function LatestProject() {
                                             <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold rounded-full uppercase tracking-widest">
                                                 {project.category}
                                             </span>
-                                            {project.years && (
+                                            {/* {project.years && (
                                                 <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold rounded-full uppercase tracking-widest">
                                                     {project.years}
                                                 </span>
-                                            )}
+                                            )} */}
                                         </div>
                                         {/* Featured Badge */}
                                         <div className="absolute bottom-3 left-4">
@@ -133,11 +133,11 @@ export default function LatestProject() {
                                         </div>
                                     </div>
                                     <div className="p-6 flex flex-col gap-2 flex-1 min-h-0">
-                                        <h3 className="text-white font-bold text-base leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                                        <h3 className="text-white font-bold text-lg leading-snug group-hover:text-primary transition-colors line-clamp-2">
                                             {project.title}
                                         </h3>
                                         {project.client && (
-                                            <p className="text-white/40 text-sm line-clamp-1">{project.client}</p>
+                                            <p className="text-white/40 text-md line-clamp-1">{project.client}</p>
                                         )}
                                     </div>
                                 </Link>

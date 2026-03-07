@@ -78,58 +78,66 @@ export default function TeamSupportPage() {
                                     <td colSpan={5} className="py-16 text-center text-slate-400">No team members yet. Click "Add Member" to create one.</td>
                                 </tr>
                             ) : (
-                                members.map((m, i) => (
-                                    <tr key={m.id} className="hover:bg-slate-50 transition-colors">
-                                        <td className="px-5 py-3.5 text-slate-400 font-mono text-xs">{i + 1}</td>
-                                        <td className="px-5 py-3.5">
-                                            {m.image ? (
-                                                <Image
-                                                    src={m.image}
-                                                    alt={m.full_name}
-                                                    width={40}
-                                                    height={40}
-                                                    className="w-10 h-10 rounded-full object-cover border border-slate-200"
-                                                />
-                                            ) : (
-                                                <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
-                                                    <UserCircle className="w-6 h-6 text-slate-400" />
-                                                </div>
-                                            )}
-                                        </td>
-                                        <td className="px-5 py-3.5 font-semibold text-slate-700">
-                                            <Link
-                                                href={`/lmpadmin/team-support/${m.id}/edit`}
-                                                className="hover:underline decoration-[#80FF00] underline-offset-2 transition-colors"
-                                            >
-                                                {m.full_name}
-                                            </Link>
-                                        </td>
-                                        <td className="px-5 py-3.5">
-                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700">
-                                                {m.jabatan || "—"}
-                                            </span>
-                                        </td>
-                                        <td className="px-5 py-3.5">
-                                            <div className="flex items-center justify-center gap-2">
+                                members.map((m: TeamMember, i: number) => {
+                                    // Optimization: Manual image resizing for Supabase to reduce payload since Next.js optimization is disabled
+                                    const imageUrl = m.image?.includes('supabase.co')
+                                        ? `${m.image}?width=80&height=80&resize=cover`
+                                        : m.image;
+
+                                    return (
+                                        <tr key={m.id} className="hover:bg-slate-50/80 group">
+                                            <td className="px-5 py-3 text-slate-400 font-mono text-xs">{i + 1}</td>
+                                            <td className="px-5 py-3">
+                                                {imageUrl ? (
+                                                    <div className="relative w-10 h-10 rounded-full overflow-hidden border border-slate-200 bg-slate-100">
+                                                        <img
+                                                            src={imageUrl}
+                                                            alt={m.full_name}
+                                                            className="w-full h-full object-cover"
+                                                            loading="lazy"
+                                                        />
+                                                    </div>
+                                                ) : (
+                                                    <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center">
+                                                        <UserCircle className="w-6 h-6 text-slate-300" />
+                                                    </div>
+                                                )}
+                                            </td>
+                                            <td className="px-5 py-3 font-semibold text-slate-700">
                                                 <Link
                                                     href={`/lmpadmin/team-support/${m.id}/edit`}
-                                                    className="p-1.5 rounded-md text-blue-500 hover:bg-blue-50 hover:text-blue-700 transition-colors"
-                                                    title="Edit"
+                                                    className="hover:text-[#19172A]"
                                                 >
-                                                    <Pencil className="w-4 h-4" />
+                                                    {m.full_name}
                                                 </Link>
-                                                <button
-                                                    onClick={() => handleDelete(m.id)}
-                                                    disabled={deleting === m.id}
-                                                    className="p-1.5 rounded-md text-red-400 hover:bg-red-50 hover:text-red-600 transition-colors disabled:opacity-50"
-                                                    title="Delete"
-                                                >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))
+                                            </td>
+                                            <td className="px-5 py-3">
+                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-50 text-purple-600 border border-purple-100/50">
+                                                    {m.jabatan || "—"}
+                                                </span>
+                                            </td>
+                                            <td className="px-5 py-3">
+                                                <div className="flex items-center justify-center gap-1.5 opacity-60 group-hover:opacity-100">
+                                                    <Link
+                                                        href={`/lmpadmin/team-support/${m.id}/edit`}
+                                                        className="p-1.5 rounded-md text-slate-400 hover:bg-white hover:text-blue-500 hover:shadow-sm border border-transparent hover:border-slate-100"
+                                                        title="Edit"
+                                                    >
+                                                        <Pencil className="w-4 h-4" />
+                                                    </Link>
+                                                    <button
+                                                        onClick={() => handleDelete(m.id)}
+                                                        disabled={deleting === m.id}
+                                                        className="p-1.5 rounded-md text-slate-400 hover:bg-white hover:text-red-500 hover:shadow-sm border border-transparent hover:border-slate-100 disabled:opacity-30"
+                                                        title="Delete"
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
                             )}
                         </tbody>
                     </table>

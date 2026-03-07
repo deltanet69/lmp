@@ -2,22 +2,66 @@
 import Link from 'next/link';
 import { WordRotate } from '@/components/ui/word-rotate';
 import { MagicCard } from '@/components/ui/magic-card';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+
+const images = [
+    '/hero/g5.png',
+];
 
 export default function Hero() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % images.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
     return (
         <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
             {/* Background Video */}
-            <video
+            {/* <video
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
                 src="/vid.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
-            />
+            /> */}
+
+            {/* Background Slider */}
+            <div className="absolute inset-0 z-0">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={currentIndex}
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                        style={{
+                            backgroundImage: `url('${images[currentIndex]}')`,
+                            willChange: 'transform'
+                        }}
+                        initial={{ opacity: 0, scale: 1 }}
+                        animate={{
+                            opacity: 1,
+                            scale: [1, 1.3, 1]
+                        }}
+                        transition={{
+                            opacity: { duration: 1.2 },
+                            scale: {
+                                duration: 20,
+                                ease: "linear",
+                                repeat: Infinity,
+                                repeatType: "reverse"
+                            }
+                        }}
+                    />
+                </AnimatePresence>
+            </div>
+
+
             {/* Overlay */}
-            <div className="absolute top-0 left-0 w-full h-full bg-[#171720]/70 z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-linear-65 from-slate-900/90 to-slate-600/20 z-0"></div>
 
             <div className="relative z-10 max-w-[1440px] mx-auto px-2 md:px-12 w-full pt-40 pb-20 lg:pt-0 lg:pb-0">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -65,17 +109,28 @@ export default function Hero() {
                                 gradientColor="rgba(226,14,194,0.15)"
                             >
                                 <div className="relative rounded-[2rem] overflow-hidden">
-                                    <img src="/heroimg.png" alt="Hero" className="w-full h-auto object-cover relative z-10" />
+                                    <motion.div
+                                        animate={{
+                                            y: [0, -20, 0],
+                                        }}
+                                        transition={{
+                                            duration: 6,
+                                            repeat: Infinity,
+                                            ease: "easeInOut"
+                                        }}
+                                    >
+                                        <img src="/heroimg.png" alt="Hero" className="w-full h-auto object-cover relative z-10" />
 
-                                    {/* Watermark Overlay */}
-                                    <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-opacity duration-300">
-                                        <img
-                                            src="/wm2.png"
-                                            alt="Watermark"
-                                            className="w-full h-auto object-contain"
-                                            onError={(e) => console.log('Image failed to load:', e)}
-                                        />
-                                    </div>
+                                        {/* Watermark Overlay */}
+                                        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-opacity duration-300">
+                                            <img
+                                                src="/wm2.png"
+                                                alt="Watermark"
+                                                className="w-full h-auto object-contain"
+                                                onError={(e) => console.log('Image failed to load:', e)}
+                                            />
+                                        </div>
+                                    </motion.div>
                                 </div>
                             </MagicCard>
                         </motion.div>

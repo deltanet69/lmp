@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // ⭐ PENTING: Export static files untuk hosting biasa
-  output: 'export',
+  // output: 'export',
 
   // ⭐ PENTING: Aktifkan trailing slash untuk konsistensi path
   trailingSlash: true,

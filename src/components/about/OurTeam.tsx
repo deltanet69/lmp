@@ -83,7 +83,7 @@ export default function OurTeam() {
                                 >
                                     {/* Photo */}
                                     <div className="w-full bg-black/20 rounded-[1.5rem] mb-4 overflow-hidden relative border-2 border-transparent group-hover:border-primary/50 transition-colors duration-300"
-                                        style={{ aspectRatio: "4/5" }}
+                                        style={{ aspectRatio: "4/4" }}
                                     >
                                         {member.image ? (
                                             <img
