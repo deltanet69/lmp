@@ -9,8 +9,20 @@ import { createClient } from "@/lib/supabase/client";
 export default function EditTeamMemberPage() {
     const router = useRouter();
     const params = useParams();
-    const id = params.id as string;
     const supabase = createClient();
+
+    // Fix for static hosting: extract UUID from URL if param is placeholder '1'
+    const [id, setId] = useState<string>(params.id as string);
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && (id === "1" || !id)) {
+            const pathParts = window.location.pathname.split("/").filter(Boolean);
+            const idx = pathParts.indexOf("team-support");
+            if (idx !== -1 && pathParts[idx + 1] && pathParts[idx + 1] !== "1") {
+                setId(pathParts[idx + 1]);
+            }
+        }
+    }, [id]);
 
     const [loading, setLoading] = useState(false);
     const [fetching, setFetching] = useState(true);

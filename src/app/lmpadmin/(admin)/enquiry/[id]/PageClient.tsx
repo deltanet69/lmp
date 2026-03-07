@@ -68,8 +68,20 @@ function CopyButton({ text }: { text: string }) {
 export default function EnquiryDetailPage() {
     const router = useRouter();
     const params = useParams();
-    const id = params.id as string;
     const supabase = createClient();
+
+    // Fix for static hosting: extract UUID from URL if param is placeholder '1'
+    const [id, setId] = useState<string>(params.id as string);
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && (id === "1" || !id)) {
+            const pathParts = window.location.pathname.split("/").filter(Boolean);
+            const idx = pathParts.indexOf("enquiry");
+            if (idx !== -1 && pathParts[idx + 1] && pathParts[idx + 1] !== "1") {
+                setId(pathParts[idx + 1]);
+            }
+        }
+    }, [id]);
 
     const [enquiry, setEnquiry] = useState<Enquiry | null>(null);
     const [loading, setLoading] = useState(true);
