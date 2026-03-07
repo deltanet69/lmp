@@ -24,17 +24,17 @@ export default function Hero() {
     return (
         <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
             {/* Background Video */}
-            {/* <video
+            <video
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
-                src="/vid.mp4"
+                src="/vid2.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
-            /> */}
+            />
 
             {/* Background Slider */}
-            <div className="absolute inset-0 z-0">
+            {/* <div className="absolute inset-0 z-0">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -59,48 +59,48 @@ export default function Hero() {
                         }}
                     />
                 </AnimatePresence>
-            </div>
+            </div> */}
 
 
             {/* Overlay */}
-            <div className="absolute top-0 left-0 w-full h-full bg-linear-65 from-slate-900/90 to-slate-600/20 z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-linear-65 from-slate-950/95 to-slate-600/40 z-0"></div>
 
             <div className="relative z-10 max-w-[1440px] mx-auto px-2 md:px-12 w-full pt-40 pb-20 lg:pt-0 lg:pb-0">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
                     {/* Left Side */}
-                    <div className="text-white px-2 lg:px-0 space-y-8 max-w-4xl">
+                    <div className="text-white px-2 lg:px-0 space-y-6 md:space-y-8 max-w-4xl text-center lg:text-left mx-auto lg:mx-0">
                         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-7 py-2 w-auto">
                             <span className="w-2 h-2 rounded-full bg-[#00e5ff]  "></span>
                             <span className="text-xs md:text-sm  text-white/90 tracking-widest ">Welcome To</span>
                         </div>
 
-                        <h1 className="text-4xl md:text-[36px] lg:text-[42px] font-black leading-tight tracking-tighter -mb-0.5">
+                        <h1 className="text-4xl md:text-5xl lg:text-[42px] font-black leading-tight tracking-tighter -mb-0.5">
                             Your Trusted Production Partner
                         </h1>
-                        <div className="flex flex-col sm:flex-row sm:items-center text-3xl md:text-[42px] font-black min-h-[50px] md:min-h-[60px]">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-center lg:justify-start text-3xl md:text-5xl lg:text-[42px] font-black min-h-[50px] md:min-h-[60px]">
                             <WordRotate
                                 className="text-primary tracking-tighter"
                                 words={["Company Profile", "Video Animation", "Website Development"]}
                             />
                         </div>
-                        <p className="text-white/70 text-lg max-w-xl leading-8 font-medium tracking-tighter">
+                        <p className="text-white/70 text-lg md:text-xl lg:text-lg max-w-2xl mx-auto lg:mx-0 leading-8 font-medium tracking-tighter">
                             Mitra strategis perusahaan-perusahaan terkemuka Indonesia dalam
                             menciptakan company profile, video animasi, dan pengembangan website
                             yang memperkuat reputasi brand.
                         </p>
-                        <div className="flex flex-wrap gap-6 pt-3">
-                            <Link href="/contact" className="bg-primary hover:bg-primary/90 text-white px-10 py-3 rounded-full font-medium transition-all  hover:shadow-[0_0_30px_rgba(226,14,194,0.6)]  tracking-wider text-sm">
+                        <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-3 md:pt-6 lg:pt-3">
+                            <Link href="/contact" className="bg-primary hover:bg-primary/90 text-white px-10 py-3 rounded-full font-medium transition-all  hover:shadow-[0_0_30px_rgba(226,14,194,0.6)]  tracking-wider text-sm md:text-base lg:text-sm">
                                 Mulai Diskusi
                             </Link>
-                            <Link href="/portfolio" className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-10 py-3 rounded-full font-medium transition-all  tracking-wider text-sm">
+                            <Link href="/portfolio" className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-10 py-3 rounded-full font-medium transition-all  tracking-wider text-sm md:text-base lg:text-sm">
                                 Lihat Portfolio
                             </Link>
                         </div>
                     </div>
 
                     {/* Right Side */}
-                    <div className="relative flex justify-center lg:justify-end pt-20">
+                    <div className="relative flex justify-center lg:justify-end pt-12 md:pt-16 lg:pt-20">
                         <motion.div
                             whileHover={{ scale: 1.03 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
