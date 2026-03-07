@@ -134,8 +134,17 @@ export default function WebSettingPage() {
             </div>
 
             {success && (
-                <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm font-medium">
-                    ✓ Settings saved successfully!
+                <div className="space-y-4">
+                    <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm font-medium">
+                        ✓ Settings saved successfully!
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-xl text-xs flex items-start gap-3">
+                        <div className="mt-0.5">ℹ</div>
+                        <p>
+                            <strong>Catatan untuk Hosting Statis:</strong> Perubahan pada SEO (Meta Title, Description) & Analytics
+                            baru akan muncul di website utama setelah Anda melakukan <strong>Re-deploy / Build ulang</strong> via GitHub Actions.
+                        </p>
+                    </div>
                 </div>
             )}
 
