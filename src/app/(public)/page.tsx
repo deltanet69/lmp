@@ -7,17 +7,10 @@ import OurService from "@/components/home/OurService";
 import LatestProject from "@/components/home/LatestProject";
 import OurClientHome from "@/components/home/OurClientHome";
 
-type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
-
-export default async function Home(props: Props) {
-  const searchParams = await props.searchParams;
-  const variant = searchParams.variant;
-
+export default async function Home() {
   return (
     <div className="flex flex-col w-full">
-      {variant === '2' ? <Hero2 /> : <Hero />}
+      <Hero />
       <Statistics />
       <OurClientHome />
       {/* <AboutUs /> */}

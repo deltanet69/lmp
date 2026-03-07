@@ -37,19 +37,19 @@ export default function Navbar() {
 
     return (
         <nav className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 pointer-events-none ${isScrolled ? 'pt-4 pb-2' : 'pt-6 pb-2'}`}>
-            <div className="mx-auto max-w-[1440px] px-4 md:px-12 pointer-events-auto relative z-50">
+            <div className="mx-auto max-w-[1440px] px-4 xl:px-12 pointer-events-auto relative z-50">
                 {/* Unified Mobile Header / Desktop Container */}
-                <div className="flex items-center justify-between bg-white/5 backdrop-blur-md border border-white/10 rounded-full py-2.5 px-6 shadow-lg shadow-black/20 md:bg-transparent md:backdrop-blur-none md:border-transparent md:rounded-none md:p-0 md:shadow-none">
+                <div className="flex items-center justify-between bg-white/5 backdrop-blur-md border border-white/10 rounded-full py-2.5 px-6 shadow-lg shadow-black/20 xl:bg-transparent xl:backdrop-blur-none xl:border-transparent xl:rounded-none xl:p-0 xl:shadow-none">
 
                     {/* Logo Section */}
                     <div className="flex items-center justify-start">
                         <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                            <img src="/lmp.png" alt="LMP Logo" className="h-8 md:h-14 w-auto object-contain" />
+                            <img src="/lmp.png" alt="LMP Logo" className="h-8 xl:h-14 w-auto object-contain" />
                         </Link>
                     </div>
 
                     {/* Desktop Menu Section */}
-                    <div className="hidden md:flex relative items-center bg-white/5 backdrop-blur-md border border-white/10 rounded-full py-2 px-10 gap-8 shadow-lg shadow-black/20">
+                    <div className="hidden xl:flex relative items-center bg-white/5 backdrop-blur-md border border-white/10 rounded-full py-2 px-10 gap-8 shadow-lg shadow-black/20">
                         {navLinks.map((link) => (
                             <div key={link.name} className="relative group">
                                 <Link
@@ -63,7 +63,7 @@ export default function Navbar() {
                     </div>
 
                     {/* CTA Button Section (Hidden on Mobile) */}
-                    <div className="hidden md:flex bg-white/5 backdrop-blur-md border border-white/10 rounded-full overflow-hidden shadow-lg shadow-black/20">
+                    <div className="hidden xl:flex bg-white/5 backdrop-blur-md border border-white/10 rounded-full overflow-hidden shadow-lg shadow-black/20">
                         <Link href="https://api.whatsapp.com/send/?phone=%2B6281243664366&text=Halo+Langit+Media+Pro&type=phone_number&app_absent=0" className="flex items-center gap-3 px-8 py-3.5 hover:bg-white/10 transition-colors">
                             <span className="text-md text-white tracking-wider">Let&apos;s talk</span>
                             <img src="/phone.png" alt="Phone" className="w-5 h-5 object-contain" />
@@ -72,7 +72,7 @@ export default function Navbar() {
 
                     {/* Mobile Menu Toggle (Hamburger) */}
                     <button
-                        className="md:hidden flex items-center justify-center p-2 rounded-full text-white hover:bg-white/10 transition-colors"
+                        className="xl:hidden flex items-center justify-center p-2 rounded-full text-white hover:bg-white/10 transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -94,7 +94,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-40 bg-[#19172A]/98 backdrop-blur-xl md:hidden flex flex-col pt-32 px-6 pb-8 pointer-events-auto h-screen overflow-y-auto"
+                        className="fixed inset-0 z-40 bg-[#19172A]/98 backdrop-blur-xl xl:hidden flex flex-col pt-32 px-6 pb-8 pointer-events-auto h-screen overflow-y-auto"
                     >
                         <div className="flex flex-col gap-6">
                             {navLinks.map((link) => (

@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // ⭐ PENTING: Export static files untuk hosting biasa
-  // output: 'export',
+  output: 'export',
 
   // ⭐ PENTING: Aktifkan trailing slash untuk konsistensi path
   trailingSlash: true,
@@ -19,13 +19,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Experimental features (opsional)
-  experimental: {
-    // @ts-ignore - Turbopack root config for monorepo-like structures
-    turbopack: {
-      root: '.',
-    },
-  },
+
 };
 
 export default nextConfig;

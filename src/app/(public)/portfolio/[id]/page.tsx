@@ -2,7 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { createClient } from "@/lib/supabase/server";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import ProjectGallery from "@/components/portfolio/ProjectGallery";
 import YouTubeModal from "@/components/portfolio/YouTubeModal";
 
@@ -34,10 +34,20 @@ function getExcerpt(html: string | null, words = 10): string {
     return arr.slice(0, words).join(" ") + (arr.length > words ? "..." : "");
 }
 
+export async function generateStaticParams() {
+    const supabasePath = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+    const supabase = createSupabaseClient(supabasePath, supabaseKey);
+    const { data } = await supabase.from("portfolio").select("slug");
+    return (data || []).map((p) => ({ id: p.slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // params.id actually contains the slug value from the URL
     const { id: slug } = await params;
-    const supabase = await createClient();
+    const supabasePath = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+    const supabase = createSupabaseClient(supabasePath, supabaseKey);
     const { data } = await supabase
         .from("portfolio")
         .select("title, description")
@@ -53,7 +63,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProjectDetailsPage({ params }: Props) {
     // params.id contains the slug string from the URL segment
     const { id: slug } = await params;
-    const supabase = await createClient();
+    const supabasePath = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+    const supabase = createSupabaseClient(supabasePath, supabaseKey);
 
     const { data: project } = await supabase
         .from("portfolio")

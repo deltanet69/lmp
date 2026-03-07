@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans, Patua_One } from "next/font/google";
 import "./globals.css";
-import { createClient } from "@/lib/supabase/server";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import Script from "next/script";
 
 const openSans = Open_Sans({
@@ -16,7 +16,9 @@ const patuaOne = Patua_One({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const supabase = await createClient();
+  const supabasePath = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+  const supabase = createSupabaseClient(supabasePath, supabaseKey);
   const { data } = await supabase.from("web_setting").select("*").limit(1).maybeSingle();
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://langitmediapro.com";
@@ -59,7 +61,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
+  const supabasePath = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+  const supabase = createSupabaseClient(supabasePath, supabaseKey);
   const { data } = await supabase.from("web_setting").select("google_analytics_id").limit(1).maybeSingle();
   const gaId = data?.google_analytics_id;
 
