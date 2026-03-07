@@ -101,13 +101,25 @@ export default function Navbar() {
                                 <div key={link.name} className="border-b border-white/10 pb-4">
                                     <Link
                                         href={link.href}
-                                        className={`text-2xl font-bold hover:text-[#E20EC2] block ${pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href)) ? 'text-[#E20EC2]' : 'text-white/90'}`}
+                                        className={`text-xl font-medium hover:text-[#E20EC2] block ${pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href)) ? 'text-[#E20EC2]' : 'text-white/90'}`}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         {link.name}
                                     </Link>
                                 </div>
                             ))}
+
+                            {/* Mobile CTA Button */}
+                            <div className="mt-4">
+                                <Link
+                                    href="https://api.whatsapp.com/send/?phone=%2B6281243664366&text=Halo+Langit+Media+Pro&type=phone_number&app_absent=0"
+                                    className="flex items-center justify-center gap-3 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full overflow-hidden shadow-lg shadow-black/20"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    <span>Let&apos;s talk</span>
+                                    <img src="/phone.png" alt="Phone" className="w-6 h-6 object-contain" />
+                                </Link>
+                            </div>
                         </div>
                     </motion.div>
                 )}
