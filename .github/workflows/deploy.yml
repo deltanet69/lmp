@@ -2,7 +2,9 @@ name: 🚀 Deploy Next.js to cPanel via FTP
 
 on:
   push:
-    branches: [main, admin] # atau branch yang Anda gunakan
+    branches: [main]
+  repository_dispatch:
+    types: [supabase-update]
 
 jobs:
   build-and-deploy:
