@@ -24,7 +24,7 @@ export default function Hero() {
     return (
         <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
             {/* Background Video */}
-            <video
+            {/* <video
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
                 src="/vid2.mp4"
                 autoPlay
@@ -33,10 +33,10 @@ export default function Hero() {
                 playsInline
                 poster="/heroimg.png"
                 preload="auto"
-            />
+            /> */}
 
             {/* Background Slider */}
-            {/* <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -61,7 +61,7 @@ export default function Hero() {
                         }}
                     />
                 </AnimatePresence>
-            </div> */}
+            </div>
 
 
             {/* Overlay */}
