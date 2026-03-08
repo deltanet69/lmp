@@ -31,6 +31,8 @@ export default function Hero() {
                 loop
                 muted
                 playsInline
+                poster="/heroimg.png"
+                preload="auto"
             />
 
             {/* Background Slider */}
@@ -130,6 +132,7 @@ export default function Hero() {
                                             loop
                                             muted
                                             playsInline
+                                            poster="/hero/g5.png"
                                             className="w-full h-full object-cover"
                                         />
                                     </div>
