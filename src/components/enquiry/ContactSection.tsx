@@ -52,11 +52,11 @@ function ResultModal({
                     exit={{ scale: 0.85, opacity: 0, y: 20 }}
                     transition={{ type: "spring", stiffness: 300, damping: 24 }}
                     onClick={(e) => e.stopPropagation()}
-                    className="relative bg-[#1B1830] border border-white/10 rounded-3xl p-10 max-w-md w-full text-center shadow-[0_0_80px_rgba(226,14,194,0.2)] overflow-hidden"
+                    className="relative bg-[#1B1830] border border-white/10 rounded-3xl p-10 max-w-md w-full text-center shadow-[0_0_80px_rgba(46,91,255,0.2)] overflow-hidden"
                 >
                     {/* Background glow */}
                     <div
-                        className={`absolute top-0 left-1/2 -translate-x-1/2 w-64 h-40 blur-[80px] pointer-events-none rounded-full ${isSuccess ? "bg-[#E20EC2]/20" : "bg-red-500/20"}`}
+                        className={`absolute top-0 left-1/2 -translate-x-1/2 w-64 h-40 blur-[80px] pointer-events-none rounded-full ${isSuccess ? "bg-[#2E5BFF]/20" : "bg-red-500/20"}`}
                     />
 
                     {/* Close button */}
@@ -74,8 +74,8 @@ function ResultModal({
                         className="relative z-10 mb-6 flex justify-center"
                     >
                         {isSuccess ? (
-                            <div className="w-20 h-20 rounded-full bg-[#E20EC2]/10 border border-[#E20EC2]/40 flex items-center justify-center">
-                                <CheckCircle className="w-10 h-10 text-[#E20EC2]" />
+                            <div className="w-20 h-20 rounded-full bg-[#2E5BFF]/10 border border-[#2E5BFF]/40 flex items-center justify-center">
+                                <CheckCircle className="w-10 h-10 text-[#2E5BFF]" />
                             </div>
                         ) : (
                             <div className="w-20 h-20 rounded-full bg-red-500/10 border border-red-500/40 flex items-center justify-center">
@@ -109,7 +109,7 @@ function ResultModal({
                         whileTap={{ scale: 0.97 }}
                         onClick={onClose}
                         className={`relative z-10 mt-8 w-full py-3.5 rounded-full font-bold text-white transition-all ${isSuccess
-                            ? "bg-[#E20EC2] hover:shadow-[0_0_25px_rgba(226,14,194,0.5)]"
+                            ? "bg-[#2E5BFF] hover:shadow-[0_0_25px_rgba(46,91,255,0.5)]"
                             : "bg-red-500/80 hover:bg-red-500"
                             }`}
                     >
@@ -208,7 +208,7 @@ export default function ContactSection() {
     const inputClass = (field: keyof FormData) =>
         `w-full bg-transparent border-b py-3 text-white placeholder:text-white/40 focus:outline-none transition-colors ${errors[field]
             ? "border-red-400 focus:border-red-400"
-            : "border-white/20 focus:border-[#E20EC2]"
+            : "border-white/20 focus:border-[#2E5BFF]"
         }`;
 
     return (
@@ -236,7 +236,7 @@ export default function ContactSection() {
                                 content: (
                                     <a
                                         href="mailto:contact@langitmediapro.com"
-                                        className="text-[#E20EC2] font-medium text-lg hover:text-white transition-colors"
+                                        className="text-[#2E5BFF] font-medium text-lg hover:text-white transition-colors"
                                     >
                                         contact@langitmediapro.com
                                     </a>
@@ -248,7 +248,7 @@ export default function ContactSection() {
                                 content: (
                                     <a
                                         href="https://api.whatsapp.com/send/?phone=%2B6281243664366&text=Halo+Langit+Media+Pro&type=phone_number&app_absent=0"
-                                        className="text-[#E20EC2] font-medium text-lg hover:text-white transition-colors"
+                                        className="text-[#2E5BFF] font-medium text-lg hover:text-white transition-colors"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -264,7 +264,7 @@ export default function ContactSection() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay }}
-                                className="bg-[#1B1830] border border-white/5 rounded-3xl p-8 hover:border-[#E20EC2]/30 transition-colors duration-300"
+                                className="bg-[#1B1830] border border-white/5 rounded-3xl p-8 hover:border-[#2E5BFF]/30 transition-colors duration-300"
                             >
                                 <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
                                 {content}
@@ -281,7 +281,7 @@ export default function ContactSection() {
                         className="bg-[#1B1830] border border-white/5 rounded-3xl p-8 lg:p-9 relative overflow-hidden"
                     >
                         {/* Glow */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#E20EC2]/10 blur-[100px] pointer-events-none rounded-full transform translate-x-1/2 -translate-y-1/2" />
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#2E5BFF]/10 blur-[100px] pointer-events-none rounded-full transform translate-x-1/2 -translate-y-1/2" />
 
                         <div className="relative z-10">
                             <h2 className="text-3xl md:text-[27px] font-bold text-white mb-8">
@@ -373,7 +373,7 @@ export default function ContactSection() {
                                     disabled={submitting}
                                     whileHover={!submitting ? { scale: 1.03 } : {}}
                                     whileTap={!submitting ? { scale: 0.97 } : {}}
-                                    className="bg-white text-[#19172A] font-bold px-10 py-4 rounded-full hover:bg-[#E20EC2] hover:text-white transition-colors duration-300 mt-4 group flex items-center gap-3 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                                    className="bg-white text-[#19172A] font-bold px-10 py-4 rounded-full hover:bg-[#2E5BFF] hover:text-white transition-colors duration-300 mt-4 group flex items-center gap-3 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
                                     {submitting ? (
                                         <>

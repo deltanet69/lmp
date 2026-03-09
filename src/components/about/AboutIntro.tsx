@@ -34,7 +34,7 @@ export default function AboutIntro() {
                         >
                             <span
                                 className="text-5xl md:text-6xl font-black text-transparent tracking-tighter"
-                                style={{ WebkitTextStroke: '2px rgba(226,14,194,1)' }}
+                                style={{ WebkitTextStroke: '2px rgba(46,91,255,1)' }}
                             >
                                 10
                             </span>

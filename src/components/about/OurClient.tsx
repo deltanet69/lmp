@@ -42,6 +42,9 @@ const clients = [
     { src: "/client/vivo.png", alt: "Vivo" },
     { src: "/client/yarsi.png", alt: "Yarsi" },
     { src: "/client/zurich.png", alt: "Zurich" },
+    { src: "/client/oneadd.png", alt: "Oneadd" },
+    { src: "/client/pasti.png", alt: "Pastigroup" },
+    { src: "/client/jacos.png", alt: "Jacos" },
 ];
 
 // Double the array to ensure smooth infinite scrolling

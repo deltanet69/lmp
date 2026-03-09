@@ -46,7 +46,7 @@ export default function OurService() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.2 }}
                         whileHover={{ y: -10 }}
-                        className="group relative backdrop-blur-md border border-white/10 rounded-3xl p-10 overflow-hidden transition-all duration-300 hover:bg-primary shadow-black/20 hover:shadow-[0_0_30px_rgba(226,14,194,0.4)] cursor-pointer"
+                        className="group relative backdrop-blur-md border border-white/10 rounded-3xl p-10 overflow-hidden transition-all duration-300 hover:bg-primary shadow-black/20 hover:shadow-[0_0_30px_rgba(46,91,255,0.4)] cursor-pointer"
                     >
                         <div className="mb-8 w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center p-4 group-hover:bg-white/20 transition-colors shadow-inner">
                             <img src={service.icon} alt={service.title} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />

@@ -101,7 +101,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
                 <div className="max-w-[1440px] mx-auto px-4 md:px-12">
 
                     {/* Thumbnail Hero with YouTube popup */}
-                    <div className="w-full aspect-video md:aspect-[21/9] rounded-[2rem] overflow-hidden mb-16 shadow-[0_0_50px_rgba(226,14,194,0.1)] border border-white/10 relative">
+                    <div className="w-full aspect-video md:aspect-[21/9] rounded-[2rem] overflow-hidden mb-16 shadow-[0_0_50px_rgba(46,91,255,0.1)] border border-white/10 relative">
                         {project.project_thumbnail ? (
                             <img
                                 src={project.project_thumbnail}
@@ -185,7 +185,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
                                 </div>
                             </div>
 
-                            <div className="relative overflow-hidden bg-gradient-to-br from-[#E20EC2] to-[#7A0668] p-8 rounded-[2rem] shadow-[0_0_40px_rgba(226,14,194,0.3)]">
+                            <div className="relative overflow-hidden bg-gradient-to-br from-[#2E5BFF] to-[#1D4ED8] p-8 rounded-[2rem] shadow-[0_0_40px_rgba(46,91,255,0.3)]">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 blur-3xl rounded-full translate-x-10 -translate-y-10" />
                                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/20 blur-2xl rounded-full -translate-x-5 translate-y-5" />
                                 <div className="relative z-10 space-y-4">

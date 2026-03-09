@@ -80,7 +80,7 @@ export default function OurTeam() {
                                         key={member.id}
                                         className="team-card relative bg-white/5 border border-white/10 p-2 rounded-[2rem] overflow-hidden group
                                                    transition-all duration-300 hover:bg-white/10 hover:border-white/20
-                                                   hover:shadow-[0_0_30px_rgba(226,14,194,0.15)] hover:-translate-y-2"
+                                                   hover:shadow-[0_0_30px_rgba(46,91,255,0.15)] hover:-translate-y-2"
                                         style={{
                                             animation: `fadeInUp 0.4s ease both`,
                                             animationDelay: `${Math.min(index, 3) * 0.07}s`,
@@ -122,7 +122,7 @@ export default function OurTeam() {
                             <div className="text-center mt-12">
                                 <button
                                     onClick={() => setShowAll((v) => !v)}
-                                    className="inline-block bg-white/5 hover:bg-primary border border-white/20 hover:border-primary text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 tracking-wider text-base hover:shadow-[0_0_25px_rgba(226,14,194,0.4)]"
+                                    className="inline-block bg-white/5 hover:bg-primary border border-white/20 hover:border-primary text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 tracking-wider text-base hover:shadow-[0_0_25px_rgba(46,91,255,0.4)]"
                                 >
                                     {showAll ? "Tampilkan Lebih Sedikit" : "Lebih banyak..."}
                                 </button>

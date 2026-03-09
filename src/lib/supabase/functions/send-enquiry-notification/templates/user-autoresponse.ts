@@ -15,19 +15,19 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
     <table width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(180deg,#0D0B1A 0%,#1A0D2E 100%);padding:40px 20px;">
         <tr>
             <td align="center">
-                <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#171720;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(226,14,194,0.2);">
+                <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#171720;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(46,91,255,0.2);">
 
                     <!-- Header -->
                     <tr>
                         <td style="background:linear-gradient(135deg,#171720 0%,#2A1A3E 60%,#171720 100%);padding:44px 40px 36px;text-align:center;position:relative;">
                             <!-- Glow effect simulation via border -->
-                            <div style="margin:0 auto 20px;width:80px;height:80px;background:rgba(226,14,194,0.12);border:2px solid rgba(226,14,194,0.5);border-radius:20px;display:block;text-align:center;line-height:80px;font-size:40px;">✨</div>
-                            <p style="margin:0 0 4px;color:#E20EC2;font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;">LANGIT MEDIA PRO</p>
+                            <div style="margin:0 auto 20px;width:80px;height:80px;background:rgba(46,91,255,0.12);border:2px solid rgba(46,91,255,0.5);border-radius:20px;display:block;text-align:center;line-height:80px;font-size:40px;">✨</div>
+                            <p style="margin:0 0 4px;color:#2E5BFF;font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;">LANGIT MEDIA PRO</p>
                             <h1 style="margin:10px 0 0;color:#ffffff;font-size:26px;font-weight:800;line-height:1.3;">
                                 Hai, ${full_name}! 👋
                             </h1>
                             <p style="margin:10px 0 0;color:rgba(255,255,255,0.6);font-size:15px;line-height:1.6;">
-                                Terima kasih sudah menghubungi <strong style="color:#E20EC2;">Langit Media Pro</strong>!<br>
+                                Terima kasih sudah menghubungi <strong style="color:#2E5BFF;">Langit Media Pro</strong>!<br>
                                 Kami sudah menerima pesan kamu dan sedang dalam antrian tim kami. 🚀
                             </p>
                         </td>
@@ -35,7 +35,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
 
                     <!-- Pink Divider -->
                     <tr>
-                        <td style="height:3px;background:linear-gradient(90deg,transparent,#E20EC2,transparent);"></td>
+                        <td style="height:3px;background:linear-gradient(90deg,transparent,#2E5BFF,transparent);"></td>
                     </tr>
 
                     <!-- Intro Text -->
@@ -50,19 +50,19 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                     <!-- Form Questions Card -->
                     <tr>
                         <td style="padding:0 40px 36px;">
-                            <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(255,255,255,0.04);border:1px solid rgba(226,14,194,0.25);border-radius:18px;overflow:hidden;">
+                            <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(255,255,255,0.04);border:1px solid rgba(46,91,255,0.25);border-radius:18px;overflow:hidden;">
 
                                 <!-- Card Header -->
                                 <tr>
-                                    <td style="background:rgba(226,14,194,0.1);padding:16px 24px;border-bottom:1px solid rgba(226,14,194,0.2);">
-                                        <p style="margin:0;color:#E20EC2;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;">📋 Info Project Kamu</p>
+                                    <td style="background:rgba(46,91,255,0.1);padding:16px 24px;border-bottom:1px solid rgba(46,91,255,0.2);">
+                                        <p style="margin:0;color:#2E5BFF;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;">📋 Info Project Kamu</p>
                                     </td>
                                 </tr>
 
                                 <!-- Question 1 -->
                                 <tr>
                                     <td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">1. Nama Lengkap Kamu</p>
+                                        <p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">1. Nama Lengkap Kamu</p>
                                         <p style="margin:0;color:rgba(255,255,255,0.35);font-size:14px;font-style:italic;">Nama lengkap / nama panggilan</p>
                                     </td>
                                 </tr>
@@ -70,7 +70,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                                 <!-- Question 2 -->
                                 <tr>
                                     <td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">2. Perusahaan / Instansi</p>
+                                        <p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">2. Perusahaan / Instansi</p>
                                         <p style="margin:0;color:rgba(255,255,255,0.35);font-size:14px;font-style:italic;">Nama perusahaan atau brand kamu</p>
                                     </td>
                                 </tr>
@@ -78,7 +78,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                                 <!-- Question 3 -->
                                 <tr>
                                     <td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">3. Project-nya tentang apa nih?</p>
+                                        <p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">3. Project-nya tentang apa nih?</p>
                                         <p style="margin:0;color:rgba(255,255,255,0.35);font-size:14px;font-style:italic;">Company profile, iklan, event, dll</p>
                                     </td>
                                 </tr>
@@ -86,7 +86,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                                 <!-- Question 4 -->
                                 <tr>
                                     <td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">4. Target Deadline / Tayang Kapan?</p>
+                                        <p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">4. Target Deadline / Tayang Kapan?</p>
                                         <p style="margin:0;color:rgba(255,255,255,0.35);font-size:14px;font-style:italic;">Tanggal atau estimasi bulan tayang</p>
                                     </td>
                                 </tr>
@@ -94,7 +94,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                                 <!-- Question 5 -->
                                 <tr>
                                     <td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">5. Referensi Video yang Kamu Suka?</p>
+                                        <p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">5. Referensi Video yang Kamu Suka?</p>
                                         <p style="margin:0;color:rgba(255,255,255,0.35);font-size:14px;font-style:italic;">Boleh link YouTube, TikTok, IG Reels, atau brief singkat</p>
                                     </td>
                                 </tr>
@@ -102,7 +102,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                                 <!-- Question 6 -->
                                 <tr>
                                     <td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">6. Estimasi Durasi Video?</p>
+                                        <p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">6. Estimasi Durasi Video?</p>
                                         <p style="margin:0;color:rgba(255,255,255,0.35);font-size:14px;font-style:italic;">30 detik, 1 menit, 2-3 menit, dll</p>
                                     </td>
                                 </tr>
@@ -110,7 +110,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                                 <!-- Question 7 -->
                                 <tr>
                                     <td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">7. Shooting-nya Mau di Mana?</p>
+                                        <p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">7. Shooting-nya Mau di Mana?</p>
                                         <p style="margin:0;color:rgba(255,255,255,0.35);font-size:14px;font-style:italic;">Lokasi shooting atau online / remote</p>
                                     </td>
                                 </tr>
@@ -118,8 +118,8 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                                 <!-- Question 8 -->
                                 <tr>
                                     <td style="padding:18px 24px;">
-                                        <p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">8. Sudah Ada Konsep?</p>
-                                        <p style="margin:0;color:rgba(255,255,255,0.5);font-size:14px;font-style:italic;">💡 Kalau belum, tim LMP siap <strong style="color:#E20EC2;">All-in</strong> bantu support ya!</p>
+                                        <p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">8. Sudah Ada Konsep?</p>
+                                        <p style="margin:0;color:rgba(255,255,255,0.5);font-size:14px;font-style:italic;">💡 Kalau belum, tim LMP siap <strong style="color:#2E5BFF;">All-in</strong> bantu support ya!</p>
                                     </td>
                                 </tr>
 
@@ -130,7 +130,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                     <!-- CTA Banner -->
                     <tr>
                         <td style="padding:0 40px 36px;">
-                            <table width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#E20EC2 0%,#9B0A86 100%);border-radius:18px;overflow:hidden;">
+                            <table width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#2E5BFF 0%,#9B0A86 100%);border-radius:18px;overflow:hidden;">
                                 <tr>
                                     <td style="padding:28px 30px;text-align:center;">
                                         <p style="margin:0 0 8px;color:#ffffff;font-size:18px;font-weight:800;line-height:1.4;">
@@ -159,7 +159,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                                                     </a>
                                                 </td>
                                                 <td style="padding:0 12px;text-align:center;">
-                                                    <a href="mailto:contact@langitmediapro.com" style="display:inline-block;background:rgba(226,14,194,0.15);border:1px solid rgba(226,14,194,0.4);color:#E20EC2;font-size:13px;font-weight:600;padding:12px 24px;border-radius:50px;text-decoration:none;">
+                                                    <a href="mailto:contact@langitmediapro.com" style="display:inline-block;background:rgba(46,91,255,0.15);border:1px solid rgba(46,91,255,0.4);color:#2E5BFF;font-size:13px;font-weight:600;padding:12px 24px;border-radius:50px;text-decoration:none;">
                                                         📧 Email Kami
                                                     </a>
                                                 </td>
@@ -183,7 +183,7 @@ export const userTemplate = ({ full_name }: UserAutoResponseProps): string => `
                             <p style="margin:0 0 6px;color:rgba(255,255,255,0.35);font-size:12px;font-style:italic;">Menjangkau Langit, Menginspirasi Bumi</p>
                             <p style="margin:10px 0 0;color:rgba(255,255,255,0.3);font-size:12px;">
                                 📞 +62 812-4366-4366 &nbsp;•&nbsp;
-                                <a href="https://langitmediapro.com" style="color:#E20EC2;text-decoration:none;">www.langitmediapro.com</a>
+                                <a href="https://langitmediapro.com" style="color:#2E5BFF;text-decoration:none;">www.langitmediapro.com</a>
                             </p>
                             <p style="margin:12px 0 0;color:rgba(255,255,255,0.2);font-size:11px;">© 2025 Langit Media Pro. All rights reserved.</p>
                         </td>

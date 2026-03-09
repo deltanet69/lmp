@@ -62,10 +62,10 @@ export default function BusinessProcess() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.15 }}
                         whileHover={{ y: -5 }}
-                        className="group relative bg-[#1B1830] border border-white/5 rounded-[2rem] p-8 overflow-hidden transition-all duration-500 hover:border-[#E20EC2]/50 hover:shadow-[0_0_40px_rgba(226,14,194,0.15)] rounded-2xl"
+                        className="group relative bg-[#1B1830] border border-white/5 rounded-[2rem] p-8 overflow-hidden transition-all duration-500 hover:border-[#2E5BFF]/50 hover:shadow-[0_0_40px_rgba(46,91,255,0.15)] rounded-2xl"
                     >
                         {/* Magic Glow Effect Background */}
-                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#E20EC2]/0 to-[#7A0668]/0 group-hover:from-[#E20EC2]/10 group-hover:to-transparent transition-all duration-500 opacity-0 group-hover:opacity-100 pointer-events-none rounded-[2rem]" />
+                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#2E5BFF]/0 to-[#7A0668]/0 group-hover:from-[#2E5BFF]/10 group-hover:to-transparent transition-all duration-500 opacity-0 group-hover:opacity-100 pointer-events-none rounded-[2rem]" />
 
                         <div className="mb-8 w-16 h-16 flex items-center justify-center relative z-10">
                             {/* Note: Icon paths assume public/proces/... exists or will be added */}
@@ -76,7 +76,7 @@ export default function BusinessProcess() {
                             />
                         </div>
 
-                        <h3 className="text-2xl font-bold text-[#E20EC2] mb-4 relative z-10 tracking-wide">{process.title}</h3>
+                        <h3 className="text-2xl font-bold text-[#2E5BFF] mb-4 relative z-10 tracking-wide">{process.title}</h3>
                         <p className="text-white/70 text-md leading-relaxed font-medium relative z-10">
                             {process.description}
                         </p>

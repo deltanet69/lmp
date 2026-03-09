@@ -64,7 +64,7 @@ export default function LatestProject() {
                             key={cat}
                             onClick={() => setActiveTab(cat)}
                             className={`px-7 py-2.5 rounded-full text-sm md:text-base transition-all duration-300 cursor-pointer border ${activeTab === cat
-                                ? "bg-primary text-white font-bold border-primary shadow-[0_0_25px_rgba(226,14,194,0.5)]"
+                                ? "bg-primary text-white font-bold border-primary shadow-[0_0_25px_rgba(46,91,255,0.5)]"
                                 : "bg-white/5 text-white/40 hover:bg-white/10 hover:text-white border-white/10"
                                 }`}
                         >
@@ -101,7 +101,7 @@ export default function LatestProject() {
                             >
                                 <Link
                                     href={`/portfolio/${project.slug || project.id}`}
-                                    className="group flex flex-col h-[380px] rounded-[2rem] overflow-hidden bg-[#1D1B2E] border border-white/5 hover:border-primary/30 hover:shadow-[0_0_40px_rgba(226,14,194,0.15)] transition-all duration-500"
+                                    className="group flex flex-col h-[380px] rounded-[2rem] overflow-hidden bg-[#1D1B2E] border border-white/5 hover:border-primary/30 hover:shadow-[0_0_40px_rgba(46,91,255,0.15)] transition-all duration-500"
                                 >
                                     <div className="relative w-full h-56 flex-shrink-0 overflow-hidden bg-white/5">
                                         {project.project_thumbnail ? (
@@ -150,7 +150,7 @@ export default function LatestProject() {
             <div className="text-center mt-16">
                 <Link
                     href="/portfolio"
-                    className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-full font-semibold transition-all tracking-wider text-lg shadow-[0_0_25px_rgba(226,14,194,0.3)] hover:shadow-[0_0_35px_rgba(226,14,194,0.5)]"
+                    className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-full font-semibold transition-all tracking-wider text-lg shadow-[0_0_25px_rgba(46,91,255,0.3)] hover:shadow-[0_0_35px_rgba(46,91,255,0.5)]"
                 >
                     View All Projects
                 </Link>

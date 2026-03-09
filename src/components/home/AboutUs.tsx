@@ -73,7 +73,7 @@ export default function AboutUs() {
                         </div>
 
                         <div className="pt-8 text-center lg:text-left">
-                            <Link href="/about" className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(226,14,194,0.4)] hover:shadow-[0_0_30px_rgba(226,14,194,0.6)] uppercase tracking-wider text-sm">
+                            <Link href="/about" className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(46,91,255,0.4)] hover:shadow-[0_0_30px_rgba(46,91,255,0.6)] uppercase tracking-wider text-sm">
                                 Pelajari Lebih Lanjut
                             </Link>
                         </div>

@@ -55,7 +55,7 @@
     --card-foreground: #FFFFFF;
     --popover: #201E35;
     --popover-foreground: #FFFFFF;
-    --primary: #E20EC2;
+    --primary: #2E5BFF;
     --primary-foreground: #FFFFFF;
     --secondary: #2AEAFF;
     --secondary-foreground: #19172A;
@@ -66,7 +66,7 @@
     --destructive: oklch(0.577 0.245 27.325);
     --border: #302C50;
     --input: #302C50;
-    --ring: #E20EC2;
+    --ring: #2E5BFF;
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
     --chart-3: oklch(0.398 0.07 227.392);
@@ -87,6 +87,11 @@
 }
 
 @keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }

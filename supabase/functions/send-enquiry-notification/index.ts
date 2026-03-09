@@ -58,7 +58,7 @@ const adminTemplate = ({
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p style="margin:0;color:#E20EC2;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;">LANGIT MEDIA PRO</p>
+                                        <p style="margin:0;color:#2E5BFF;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;">LANGIT MEDIA PRO</p>
                                         <h1 style="margin:8px 0 0;color:#ffffff;font-size:24px;font-weight:800;line-height:1.3;">🚀 Enquiry Baru Masuk!</h1>
                                         <p style="margin:6px 0 0;color:rgba(255,255,255,0.5);font-size:13px;">${date} WIB</p>
                                     </td>
@@ -72,7 +72,7 @@ const adminTemplate = ({
                         </td>
                     </tr>
                     <tr>
-                        <td style="background:#E20EC2;padding:14px 40px;">
+                        <td style="background:#2E5BFF;padding:14px 40px;">
                             <p style="margin:0;color:#ffffff;font-size:14px;font-weight:600;text-align:center;">
                                 Ada calon klien baru yang menghubungi via website. Segera follow up! ⚡
                             </p>
@@ -85,8 +85,8 @@ const adminTemplate = ({
                             </p>
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Nama</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Nama</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
                                         <p style="margin:0;color:#1a1a2e;font-size:15px;font-weight:600;">${full_name}</p>
@@ -95,8 +95,8 @@ const adminTemplate = ({
                             </table>
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Email</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Email</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
                                         <a href="mailto:${email_address}" style="color:#6366f1;font-size:15px;font-weight:600;text-decoration:none;">${email_address}</a>
@@ -105,8 +105,8 @@ const adminTemplate = ({
                             </table>
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Telepon</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Telepon</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
                                         <p style="margin:0;color:#1a1a2e;font-size:15px;font-weight:600;">${phone_number || "—"}</p>
@@ -115,19 +115,19 @@ const adminTemplate = ({
                             </table>
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Tipe Proyek</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Tipe Proyek</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
-                                        <span style="display:inline-block;background:#E20EC2;color:#ffffff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;">${project_type}</span>
+                                        <span style="display:inline-block;background:#2E5BFF;color:#ffffff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;">${project_type}</span>
                                     </td>
                                 </tr>
                             </table>
                             ${message ? `
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Pesan</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Pesan</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
                                         <p style="margin:0;color:#333;font-size:14px;line-height:1.7;">${message}</p>
@@ -139,7 +139,7 @@ const adminTemplate = ({
                                 <tr>
                                     <td align="center">
                                         <a href="${adminUrl}/lmpadmin/enquiry"
-                                           style="display:inline-block;background:linear-gradient(135deg,#E20EC2 0%,#B80B9C 100%);color:#ffffff;font-size:15px;font-weight:700;padding:16px 40px;border-radius:50px;text-decoration:none;letter-spacing:0.5px;box-shadow:0 8px 24px rgba(226,14,194,0.4);">
+                                           style="display:inline-block;background:linear-gradient(135deg,#2E5BFF 0%,#B80B9C 100%);color:#ffffff;font-size:15px;font-weight:700;padding:16px 40px;border-radius:50px;text-decoration:none;letter-spacing:0.5px;box-shadow:0 8px 24px rgba(226,14,194,0.4);">
                                             Buka Admin Panel →
                                         </a>
                                     </td>
@@ -151,7 +151,7 @@ const adminTemplate = ({
                         <td style="background:#f8f8ff;padding:24px 40px;border-top:2px solid #f0f0f0;">
                             <p style="margin:0;text-align:center;color:#999;font-size:12px;">
                                 © 2025 <strong>Langit Media Pro</strong> — Email notifikasi otomatis. Jangan reply email ini.<br>
-                                <a href="https://langitmediapro.com" style="color:#E20EC2;text-decoration:none;">www.langitmediapro.com</a>
+                                <a href="https://langitmediapro.com" style="color:#2E5BFF;text-decoration:none;">www.langitmediapro.com</a>
                             </p>
                         </td>
                     </tr>
@@ -180,18 +180,18 @@ const userTemplate = ({ full_name }: { full_name: string }): string => `
                     <tr>
                         <td style="background:linear-gradient(135deg,#171720 0%,#2A1A3E 60%,#171720 100%);padding:44px 40px 36px;text-align:center;">
                             <div style="margin:0 auto 20px;width:80px;height:80px;background:rgba(226,14,194,0.12);border:2px solid rgba(226,14,194,0.5);border-radius:20px;display:block;text-align:center;line-height:80px;font-size:40px;">✨</div>
-                            <p style="margin:0 0 4px;color:#E20EC2;font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;">LANGIT MEDIA PRO</p>
+                            <p style="margin:0 0 4px;color:#2E5BFF;font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;">LANGIT MEDIA PRO</p>
                             <h1 style="margin:10px 0 0;color:#ffffff;font-size:26px;font-weight:800;line-height:1.3;">
                                 Hai, ${full_name}! 👋
                             </h1>
                             <p style="margin:10px 0 0;color:rgba(255,255,255,0.6);font-size:15px;line-height:1.6;">
-                                Terima kasih sudah menghubungi <strong style="color:#E20EC2;">Langit Media Pro</strong>!<br>
+                                Terima kasih sudah menghubungi <strong style="color:#2E5BFF;">Langit Media Pro</strong>!<br>
                                 Kami sudah menerima pesan kamu dan sedang dalam antrian tim kami. 🚀
                             </p>
                         </td>
                     </tr>
                     <tr>
-                        <td style="height:3px;background:linear-gradient(90deg,transparent,#E20EC2,transparent);"></td>
+                        <td style="height:3px;background:linear-gradient(90deg,transparent,#2E5BFF,transparent);"></td>
                     </tr>
                     <tr>
                         <td style="padding:36px 40px 20px;">
@@ -203,19 +203,19 @@ const userTemplate = ({ full_name }: { full_name: string }): string => `
                     <tr>
                         <td style="padding:0 40px 36px;">
                             <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(255,255,255,0.04);border:1px solid rgba(226,14,194,0.25);border-radius:18px;overflow:hidden;">
-                                <tr><td style="background:rgba(226,14,194,0.1);padding:16px 24px;border-bottom:1px solid rgba(226,14,194,0.2);"><p style="margin:0;color:#E20EC2;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;">📋 Info Project Kamu</p></td></tr>
-                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">1. Nama Lengkap Kamu</p></td></tr>
-                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">2. Perusahaan / Instansi</p></td></tr>
-                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">3. Project-nya tentang apa nih?</p></td></tr>
-                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">4. Target Deadline / Tayang Kapan?</p></td></tr>
-                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">5. Referensi Video yang Kamu Suka?</p></td></tr>
-                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">6. Estimasi Durasi Video?</p></td></tr>
-                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">7. Shooting-nya Mau di Mana?</p></td></tr>
-                                <tr><td style="padding:18px 24px;"><p style="margin:0 0 6px;color:#E20EC2;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">8. Sudah Ada Konsep?</p></td></tr>
+                                <tr><td style="background:rgba(226,14,194,0.1);padding:16px 24px;border-bottom:1px solid rgba(226,14,194,0.2);"><p style="margin:0;color:#2E5BFF;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;">📋 Info Project Kamu</p></td></tr>
+                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">1. Nama Lengkap Kamu</p></td></tr>
+                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">2. Perusahaan / Instansi</p></td></tr>
+                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">3. Project-nya tentang apa nih?</p></td></tr>
+                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">4. Target Deadline / Tayang Kapan?</p></td></tr>
+                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">5. Referensi Video yang Kamu Suka?</p></td></tr>
+                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">6. Estimasi Durasi Video?</p></td></tr>
+                                <tr><td style="padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.05);"><p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">7. Shooting-nya Mau di Mana?</p></td></tr>
+                                <tr><td style="padding:18px 24px;"><p style="margin:0 0 6px;color:#2E5BFF;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">8. Sudah Ada Konsep?</p></td></tr>
                             </table>
                         </td>
                     </tr>
-                    <tr><td style="padding:0 40px 36px;"><table width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#E20EC2 0%,#9B0A86 100%);border-radius:18px;overflow:hidden;"><tr><td style="padding:28px 30px;text-align:center;"><p style="margin:0 0 8px;color:#ffffff;font-size:18px;font-weight:800;line-height:1.4;">🔥 Abis ini, tim kreatif kita bakal kirim<br>showreel + penawaran terbaik buat kamu!</p></td></tr></table></td></tr>
+                    <tr><td style="padding:0 40px 36px;"><table width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#2E5BFF 0%,#9B0A86 100%);border-radius:18px;overflow:hidden;"><tr><td style="padding:28px 30px;text-align:center;"><p style="margin:0 0 8px;color:#ffffff;font-size:18px;font-weight:800;line-height:1.4;">🔥 Abis ini, tim kreatif kita bakal kirim<br>showreel + penawaran terbaik buat kamu!</p></td></tr></table></td></tr>
                     <tr><td style="padding:28px 40px;text-align:center;"><p style="margin:0 0 6px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:700;">Langit Media Pro</p><p style="margin:10px 0 0;color:rgba(255,255,255,0.3);font-size:12px;">📞 +62 812-4366-4366</p></td></tr>
                 </table>
             </td>

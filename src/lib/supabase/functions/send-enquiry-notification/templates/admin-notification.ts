@@ -56,12 +56,12 @@ export const adminTemplate = ({
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p style="margin:0;color:#E20EC2;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;">LANGIT MEDIA PRO</p>
+                                        <p style="margin:0;color:#2E5BFF;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;">LANGIT MEDIA PRO</p>
                                         <h1 style="margin:8px 0 0;color:#ffffff;font-size:24px;font-weight:800;line-height:1.3;">🚀 Enquiry Baru Masuk!</h1>
                                         <p style="margin:6px 0 0;color:rgba(255,255,255,0.5);font-size:13px;">${date} WIB</p>
                                     </td>
                                     <td align="right">
-                                        <div style="width:52px;height:52px;background:rgba(226,14,194,0.15);border:2px solid rgba(226,14,194,0.4);border-radius:14px;display:inline-flex;align-items:center;justify-content:center;">
+                                        <div style="width:52px;height:52px;background:rgba(46,91,255,0.15);border:2px solid rgba(46,91,255,0.4);border-radius:14px;display:inline-flex;align-items:center;justify-content:center;">
                                             <span style="font-size:26px;line-height:52px;text-align:center;display:block;">📬</span>
                                         </div>
                                     </td>
@@ -72,7 +72,7 @@ export const adminTemplate = ({
 
                     <!-- Alert Banner -->
                     <tr>
-                        <td style="background:#E20EC2;padding:14px 40px;">
+                        <td style="background:#2E5BFF;padding:14px 40px;">
                             <p style="margin:0;color:#ffffff;font-size:14px;font-weight:600;text-align:center;">
                                 Ada calon klien baru yang menghubungi via website. Segera follow up! ⚡
                             </p>
@@ -91,8 +91,8 @@ export const adminTemplate = ({
                             <!-- Name -->
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Nama</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Nama</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
                                         <p style="margin:0;color:#1a1a2e;font-size:15px;font-weight:600;">${full_name}</p>
@@ -103,8 +103,8 @@ export const adminTemplate = ({
                             <!-- Email -->
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Email</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Email</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
                                         <a href="mailto:${email_address}" style="color:#6366f1;font-size:15px;font-weight:600;text-decoration:none;">${email_address}</a>
@@ -115,8 +115,8 @@ export const adminTemplate = ({
                             <!-- Phone -->
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Telepon</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Telepon</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
                                         <p style="margin:0;color:#1a1a2e;font-size:15px;font-weight:600;">${phone_number || "—"}</p>
@@ -127,11 +127,11 @@ export const adminTemplate = ({
                             <!-- Project Type -->
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Tipe Proyek</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Tipe Proyek</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
-                                        <span style="display:inline-block;background:#E20EC2;color:#ffffff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;">${project_type}</span>
+                                        <span style="display:inline-block;background:#2E5BFF;color:#ffffff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;">${project_type}</span>
                                     </td>
                                 </tr>
                             </table>
@@ -140,8 +140,8 @@ export const adminTemplate = ({
                             ${message ? `
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
                                 <tr>
-                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #E20EC2;">
-                                        <p style="margin:0;color:#E20EC2;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Pesan</p>
+                                    <td width="140" style="vertical-align:top;padding:14px 16px;background:#f8f8ff;border-radius:10px 0 0 10px;border-left:4px solid #2E5BFF;">
+                                        <p style="margin:0;color:#2E5BFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Pesan</p>
                                     </td>
                                     <td style="vertical-align:top;padding:14px 16px;background:#fafafa;border-radius:0 10px 10px 0;">
                                         <p style="margin:0;color:#333;font-size:14px;line-height:1.7;">${message}</p>
@@ -155,7 +155,7 @@ export const adminTemplate = ({
                                 <tr>
                                     <td align="center">
                                         <a href="${adminUrl}/lmpadmin/enquiry"
-                                           style="display:inline-block;background:linear-gradient(135deg,#E20EC2 0%,#B80B9C 100%);color:#ffffff;font-size:15px;font-weight:700;padding:16px 40px;border-radius:50px;text-decoration:none;letter-spacing:0.5px;box-shadow:0 8px 24px rgba(226,14,194,0.4);">
+                                           style="display:inline-block;background:linear-gradient(135deg,#2E5BFF 0%,#B80B9C 100%);color:#ffffff;font-size:15px;font-weight:700;padding:16px 40px;border-radius:50px;text-decoration:none;letter-spacing:0.5px;box-shadow:0 8px 24px rgba(46,91,255,0.4);">
                                             Buka Admin Panel →
                                         </a>
                                     </td>
@@ -170,7 +170,7 @@ export const adminTemplate = ({
                         <td style="background:#f8f8ff;padding:24px 40px;border-top:2px solid #f0f0f0;">
                             <p style="margin:0;text-align:center;color:#999;font-size:12px;">
                                 © 2025 <strong>Langit Media Pro</strong> — Email notifikasi otomatis. Jangan reply email ini.<br>
-                                <a href="https://langitmediapro.com" style="color:#E20EC2;text-decoration:none;">www.langitmediapro.com</a>
+                                <a href="https://langitmediapro.com" style="color:#2E5BFF;text-decoration:none;">www.langitmediapro.com</a>
                             </p>
                         </td>
                     </tr>

@@ -54,7 +54,7 @@ export default function Navbar() {
                             <div key={link.name} className="relative group">
                                 <Link
                                     href={link.href}
-                                    className={`text-md tracking-wide hover:text-[#E20EC2] transition-colors py-2 block ${pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href)) ? 'text-[#E20EC2] font-bold' : 'text-white/90'}`}
+                                    className={`text-md tracking-wide hover:text-[#2E5BFF] transition-colors py-2 block ${pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href)) ? 'text-[#2E5BFF] font-bold' : 'text-white/90'}`}
                                 >
                                     {link.name}
                                 </Link>
@@ -101,7 +101,7 @@ export default function Navbar() {
                                 <div key={link.name} className="border-b border-white/10 pb-4">
                                     <Link
                                         href={link.href}
-                                        className={`text-xl font-medium hover:text-[#E20EC2] block ${pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href)) ? 'text-[#E20EC2]' : 'text-white/90'}`}
+                                        className={`text-xl font-medium hover:text-[#2E5BFF] block ${pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href)) ? 'text-[#2E5BFF]' : 'text-white/90'}`}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         {link.name}
