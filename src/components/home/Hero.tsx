@@ -92,7 +92,7 @@ export default function Hero() {
                             yang memperkuat reputasi brand.
                         </p>
                         <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-3 md:pt-6 lg:pt-3">
-                            <Link href="/contact" className="bg-primary hover:bg-primary/90 text-white px-10 py-3 rounded-full font-medium transition-all  hover:shadow-[0_0_30px_rgba(46,91,255,0.6)]  tracking-wider text-sm md:text-base lg:text-sm">
+                            <Link href="/contact" className="bg-[#3ACBEC] hover:bg-[#22A8C7] text-black px-10 py-3 rounded-full font-medium transition-all  hover:shadow-[#22A8C7]  tracking-wider text-sm md:text-base lg:text-sm">
                                 Mulai Diskusi
                             </Link>
                             <Link href="/portfolio" className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-10 py-3 rounded-full font-medium transition-all  tracking-wider text-sm md:text-base lg:text-sm">

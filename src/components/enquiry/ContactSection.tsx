@@ -236,7 +236,7 @@ export default function ContactSection() {
                                 content: (
                                     <a
                                         href="mailto:contact@langitmediapro.com"
-                                        className="text-[#2E5BFF] font-medium text-lg hover:text-white transition-colors"
+                                        className="text-[#1AC3AE] font-medium text-lg hover:text-white transition-colors"
                                     >
                                         contact@langitmediapro.com
                                     </a>
@@ -248,7 +248,7 @@ export default function ContactSection() {
                                 content: (
                                     <a
                                         href="https://api.whatsapp.com/send/?phone=%2B6281243664366&text=Halo+Langit+Media+Pro&type=phone_number&app_absent=0"
-                                        className="text-[#2E5BFF] font-medium text-lg hover:text-white transition-colors"
+                                        className="text-[#1AC3AE] font-medium text-lg hover:text-white transition-colors"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -373,7 +373,7 @@ export default function ContactSection() {
                                     disabled={submitting}
                                     whileHover={!submitting ? { scale: 1.03 } : {}}
                                     whileTap={!submitting ? { scale: 0.97 } : {}}
-                                    className="bg-white text-[#19172A] font-bold px-10 py-4 rounded-full hover:bg-[#2E5BFF] hover:text-white transition-colors duration-300 mt-4 group flex items-center gap-3 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                                    className="bg-[#3ACBEC] text-[#19172A] font-bold px-10 py-4 rounded-full hover:bg-[#1AC3AE] hover:text-white transition-colors duration-300 mt-4 group flex items-center gap-3 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
                                     {submitting ? (
                                         <>

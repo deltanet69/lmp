@@ -22,9 +22,9 @@ export default function Footer() {
                         href="https://api.whatsapp.com/send/?phone=%2B6281243664366&text=Halo+Langit+Media+Pro&type=phone_number&app_absent=0"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-5 bg-[#2E5BFF] hover:bg-primary/90 text-white px-12 py-3 rounded-full font-bold transition-all hover:shadow-[5px_5px_40px_rgba(46,91,255,0.6)] text-md cursor-pointer group"
+                        className="inline-flex items-center gap-5 bg-[#3ACBEC] hover:bg-[#3ACBEC] text-black px-12 py-3 rounded-full font-bold transition-all hover:shadow-[5px_5px_40px_rgba(46,91,255,0.6)] text-md cursor-pointer group"
                     >
-                        <img src="/cs.png" alt="CS" className="w-10 h-10 object-contain group-hover:scale-110 transition-transform" />
+                        <img src="/csb.png" alt="CS" className="w-10 h-10 object-contain group-hover:scale-110 transition-transform" />
                         <span>Hubungi Tim LMP</span>
                     </a>
                 </div>

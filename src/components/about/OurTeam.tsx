@@ -122,7 +122,7 @@ export default function OurTeam() {
                             <div className="text-center mt-12">
                                 <button
                                     onClick={() => setShowAll((v) => !v)}
-                                    className="inline-block bg-white/5 hover:bg-primary border border-white/20 hover:border-primary text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 tracking-wider text-base hover:shadow-[0_0_25px_rgba(46,91,255,0.4)]"
+                                    className="inline-block bg-white/5 hover:bg-primary border border-white/20 hover:border-primary text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 tracking-wider text-base hover:shadow-[0_0_25px_rgba(46,91,255,0.4)] cursor-pointer"
                                 >
                                     {showAll ? "Tampilkan Lebih Sedikit" : "Lebih banyak..."}
                                 </button>

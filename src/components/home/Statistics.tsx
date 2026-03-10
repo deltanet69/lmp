@@ -35,8 +35,8 @@ export default function Statistics() {
                     {stats.map((stat, index) => (
                         <motion.div key={index} whileHover={{ y: -8 }}>
                             <MagicCard
-                                className="flex flex-col items-center justify-center p-10 bg-[#201E35]/60 border-white/5 hover:shadow-[0_0_30px_rgba(46,91,255,0.3)] rounded-3xl h-full backdrop-blur-sm"
-                                gradientColor="rgba(46,91,255,0.2)"
+                                className="flex flex-col items-center justify-center p-10 bg-[#201E35]/60 border-white/5 hover:shadow-[#E20EC2s] rounded-3xl h-full backdrop-blur-sm"
+                                gradientColor="#d2adcc3c"
                             >
                                 <h3 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-xl">{stat.value}</h3>
                                 <p className="text-white/70 font-medium text-lg">{stat.label}</p>

@@ -54,7 +54,7 @@ export default function Navbar() {
                             <div key={link.name} className="relative group">
                                 <Link
                                     href={link.href}
-                                    className={`text-md tracking-wide hover:text-[#2E5BFF] transition-colors py-2 block ${pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href)) ? 'text-[#2E5BFF] font-bold' : 'text-white/90'}`}
+                                    className={`text-md tracking-wide hover:text-[#E20EC2] transition-colors py-2 block ${pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href)) ? 'text-[#E20EC2] font-bold' : 'text-white/90'}`}
                                 >
                                     {link.name}
                                 </Link>

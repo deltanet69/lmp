@@ -185,19 +185,19 @@ export default async function ProjectDetailsPage({ params }: Props) {
                                 </div>
                             </div>
 
-                            <div className="relative overflow-hidden bg-gradient-to-br from-[#2E5BFF] to-[#1D4ED8] p-8 rounded-[2rem] shadow-[0_0_40px_rgba(46,91,255,0.3)]">
+                            <div className="relative overflow-hidden bg-gradient-to-br from-[#3ACBEC] to-[#3ACBEC] p-8 rounded-[2rem] shadow-[0_0_40px_rgba(46,91,255,0.3)]">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 blur-3xl rounded-full translate-x-10 -translate-y-10" />
                                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/20 blur-2xl rounded-full -translate-x-5 translate-y-5" />
                                 <div className="relative z-10 space-y-4">
-                                    <h3 className="text-2xl font-black text-white leading-tight">
+                                    <h3 className="text-2xl font-black text-black leading-tight">
                                         Need something like this?
                                     </h3>
-                                    <p className="text-white/80 font-medium">
+                                    <p className="text-black/80 font-medium">
                                         Let&apos;s collaborate and build something extraordinary for your brand.
                                     </p>
                                     <Link
                                         href="/enquiry"
-                                        className="inline-block mt-4 bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-black hover:text-white transition-colors duration-300"
+                                        className="inline-block mt-4 bg-[#3ACBEC] text-black font-bold px-8 py-3 rounded-full border border-black hover:bg-[#E20EC2] hover:text-white transition-colors duration-300"
                                     >
                                         Contact Us Now
                                     </Link>

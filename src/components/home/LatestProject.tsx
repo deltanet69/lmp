@@ -150,7 +150,7 @@ export default function LatestProject() {
             <div className="text-center mt-16">
                 <Link
                     href="/portfolio"
-                    className="inline-block bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-full font-semibold transition-all tracking-wider text-lg shadow-[0_0_25px_rgba(46,91,255,0.3)] hover:shadow-[0_0_35px_rgba(46,91,255,0.5)]"
+                    className="inline-block bg-[#3ACBEC] hover:bg-[#22A8C7] text-black px-10 py-4 rounded-full font-semibold transition-all tracking-wider text-lg shadow-[0_0_25px_rgba(46,91,255,0.3)] hover:shadow-[0_0_35px_rgba(46,91,255,0.5)]"
                 >
                     View All Projects
                 </Link>
